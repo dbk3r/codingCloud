@@ -20,7 +20,12 @@
 		<script type="text/javascript" src="./includes/js/jquery-migrate-1.2.1.min.js"></script>
 		<script type="text/javascript" src="./includes/js/dmuploader.js"></script>
 		
-		<script></script>
+		
+		<script type="text/javascript">
+			
+			
+			
+		</script>
 		
 	</body>
 	
