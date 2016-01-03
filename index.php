@@ -18,8 +18,7 @@
 	<body>
 		<script type="text/javascript" src="./includes/js/jquery-2.1.4.min.js"></script>
 		<script type="text/javascript" src="./includes/js/jquery-migrate-1.2.1.min.js"></script>
-		<script type="text/javascript" src="./includes/js/dmuploader.js"></script>
-		
+		<script type="text/javascript" src="./includes/js/dmuploader.js"></script>		
 		
 		<script type="text/javascript">
 			
