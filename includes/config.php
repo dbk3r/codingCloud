@@ -7,7 +7,7 @@ define("BRC_ADMIN", "brc_admin");    // Der Datenbank-Benutzername.
 define("BRC_ADMIN_PASSWORD", "n");    // Das Datenbank-Passwort. 
 define("DB", "brc_db");    // Der Datenbankname.
 
-define("CONTENT_DIR", "/var/www/html/brc/content/");    // Der Datenbankname.
+define("CONTENT_DIR", "/var/www/html/cc/content/");    // Content/Data Verzeichnis.
  
 define("CAN_REGISTER", "any");
 define("DEFAULT_ROLE", "member");
