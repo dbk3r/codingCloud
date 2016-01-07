@@ -1,35 +1,22 @@
 <?php
 
-	include_once 'includes/config.php';
+// A list of permitted file extensions
+$allowed = array('png', 'jpg', 'gif','zip');
 
+if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
 
-$output_dir = CONTENT_DIR;
+	$extension = pathinfo($_FILES['upl']['name'], PATHINFO_EXTENSION);
 
+	if(!in_array(strtolower($extension), $allowed)){
+		echo '{"status":"error"}';
+		exit;
+	}
 
-if(isset($_FILES["myfile"]))
-{
-    $ret = array();
-
-    $error =$_FILES["myfile"]["error"];
-    if(!is_array($_FILES["myfile"]["name"])) //single file
-    {
-        $fileName = $_FILES["myfile"]["name"];
-        move_uploaded_file($_FILES["myfile"]["tmp_name"],$output_dir.$fileName);
-        $ret[]= $fileName;
-    }
-    else  //Multiple files, file[]
-    {
-        $fileCount = count($_FILES["myfile"]["name"]);
-        for($i=0; $i < $fileCount; $i++)
-        {
-            $fileName = $_FILES["myfile"]["name"][$i];
-            move_uploaded_file($_FILES["myfile"]["tmp_name"][$i],$output_dir.$fileName);
-            $ret[]= $fileName;
-        }
-
-    }
-    
-	echo json_encode(array('status' => 'ok'));
-
+	if(move_uploaded_file($_FILES['upl']['tmp_name'], 'file-upload/'.$_FILES['upl']['name'])){
+		echo '{"status":"success"}';
+		exit;
+	}
 }
-?>
+
+echo '{"status":"error"}';
+exit;

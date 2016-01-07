@@ -10,3 +10,26 @@
 body {
 	background-color: #eeeeee;
 }
+.nav-bar {
+	background-color:#C77405;
+	width: auto;
+	margin-left:10px;
+	margin-top:10px;
+	margin-right:10px;
+	margin-bottom:10px;
+	
+}
+.upload_db {
+	background-color:#cccccc;
+	width: auto;
+	height: 75px;
+	margin-left:10px;
+	margin-top:10px;
+	margin-right:10px;
+	margin-bottom:10px;
+	text-align:center;
+	line-height:75px;
+	font-family:verdana, sans-serif; font-weight: bold;
+	font-size:12px;
+	
+}
