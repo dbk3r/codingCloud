@@ -22,7 +22,7 @@
 		
 		<div class=mainDiv id=mainDiv>
 			test
-			<div class=nav>
+			<div class=nav-bar>
 				
 			</div>
 			
