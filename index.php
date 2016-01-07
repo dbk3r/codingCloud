@@ -20,7 +20,30 @@
 		<script type="text/javascript" src="./includes/js/jquery-migrate-1.2.1.min.js"></script>
 		<script type="text/javascript" src="./includes/js/dmuploader.js"></script>		
 		
+		<div class=mainDiv id=mainDiv>
+			test
+			<div class=nav>
+				
+			</div>
+			
+		</div>
+		
+		
 		<script type="text/javascript">
+			
+			$(window).resize(function(){
+				$('.mainDiv').css({
+				position:'absolute',
+					left: ($(window).width() - $('.mainDiv').outerWidth())/2,
+					top: ($(window).height() - $('.mainDiv').outerHeight())/2
+				});	
+
+			});
+			
+			$( document ).ready(function() {
+ 				$(window).resize();
+			});
+			
 			
 			
 			
