@@ -1,12 +1,15 @@
 <?php
 
 include_once 'includes/config.php';
+//include_once 'includes/db_connect.php';
 include_once 'includes/functions.php';
 
 
 $upload_dir = UPLOAD_DIR;
-// A list of permitted file extensions
-$allowed = array('mov', 'mxf', 'mp4', 'png', 'jpg', 'gif','zip');
+$content_dir = CONTENT_DIR;
+
+
+
 
 if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
 	
@@ -14,14 +17,61 @@ if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
 	
 
 	$extension = pathinfo($_FILES['upl']['name'], PATHINFO_EXTENSION);
-	$uuid = generate_uuid() . "." . $extension;
+	$uuid = generate_uuid();
 	
 	if(!in_array(strtolower($extension), $allowed)){
 		echo '{"status":"error"}';
 		exit;
 	}
-
-	if(move_uploaded_file($_FILES['upl']['tmp_name'], $upload_dir.$uuid)){
+	
+	if(move_uploaded_file($_FILES['upl']['tmp_name'], $upload_dir.$org_filename)){		
+		mkdir($content_dir.$uuid);		
+		if($extension == "zip") {
+			
+			if(unzip_file($upload_dir.$org_filename, $content_dir.$uuid)) {
+				
+				unlink($upload_dir.$org_filename);
+				
+				// parse unziped folder
+				$dh  = opendir($content_dir.$uuid);
+				while (false !== ($filename = readdir($dh))) {
+					
+					if($filename == "." || $filename == "..") // ignore dots
+					{ continue; } else {
+					    $f_ext = pathinfo($filename, PATHINFO_EXTENSION);					
+						$content_type = getContentType($f_ext);
+						
+						
+						if($f_ext == "blend") {
+							// add blendfile to Database
+							add_DBContent($content_dir.$uuid."/".$filename, end(explode(".", $filename)), $uuid, "Blender");	
+						} else {
+							if(in_array(strtolower($f_ext), $allowed)){
+								// add file to Database									
+								add_DBContent($content_dir.$uuid."/".$filename, end(explode(".", $filename)), $uuid, $content_type);						
+							} else {
+								// delete file								
+								unlink($content_dir.$uuid."/".$filename);
+							}					
+						}
+					} //end ignore dots
+				} // end while  dirscan	
+							
+			} // ende unzip
+			
+		} // end if zip
+		rename($upload_dir.$org_filename, $content_dir.$uuid);
+		if ($extension == "blend") {
+			# add blend-file to Database
+			add_DBContent($content_dir.$uuid."/".$org_filename, end(explode(".", $org_filename)), $uuid, "Blender");
+		}
+		else {
+			# add uploaded File to Database
+			$content_type = getContentType($extension);
+			add_DBContent($content_dir.$uuid."/".$org_filename, end(explode(".", $org_filename)), $uuid, $content_type);
+			
+		}
+		
 		echo '{"status":"success"}';
 		exit;
 	}

@@ -1,5 +1,39 @@
 <?php
 include_once 'config.php';
+
+
+
+function write_log($log_text) {
+	$myfile = fopen(LOGFILE, "a") or die("Unable to open file!");	
+	fwrite($myfile, $log_text . "\n");
+	fclose($myfile);	
+}
+
+function getContentType($ext) {	
+	if(in_array(strtolower($ext), $contentType_Audio)) { $ContentType = "Audio" ;}
+	if(in_array(strtolower($ext), $contentType_Video)) { $ContentType = "Video" ;}	
+	return $ContentType;
+}
+
+function add_DBContent($content_filename, $content_description, $uuid, $content_type) {
+	
+	
+}
+
+function unzip_file($file, $path) {	
+	
+	$zip = new ZipArchive;
+	$res = $zip->open($file);
+	if ($res === TRUE) {
+	  $zip->extractTo($path);
+	  $zip->close();	
+	  $ret = TRUE;	  
+	} else {
+		$ret = FALSE;
+	}
+	return $ret;
+}
+
  
 function generate_uuid() {
     return sprintf( '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',

@@ -5,7 +5,7 @@
 	$mysqladmin = "root";
 	$mysqladmin_password = "DPSadm1n";
 	
-	$brc_table_prefix = "brc_";
+	$brc_table_prefix = TABLE_PREPIX;
 	
 	// Create connection
 	$conn = new mysqli(HOST, $mysqladmin, $mysqladmin_password);
@@ -67,14 +67,15 @@
 	    echo "Error creating $table: " . $conn->error . "\n";
 	}
 	
-	$table = $brc_table_prefix."projects";
+	$table = $brc_table_prefix."content";
 	$db = DB;
 	$sql = "CREATE TABLE IF NOT EXISTS `$db`.`$table` (
 	    	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	        `user_id` INT(11) NOT NULL,
-		`project_name` VARCHAR(255),
-		`project_Description` VARCHAR(255),
-		`project_id` VARCHAR(255) );
+		`content_description` VARCHAR(255),
+		`content_filename` VARCHAR(255),
+		`content_type` VARCHAR(255),		
+		`content_uuid` VARCHAR(255) );
 	        ";
 	if ($conn->query($sql) === TRUE) {
 	    echo "$table created successfully\n";
@@ -90,7 +91,7 @@
 	        `endframe` INT(11) NOT NULL,
 	        `output_folder` VARCHAR(255),
 	        `sourcefile` VARCHAR(255),
-	        `project_name` VARCHAR(255),
+	        `content_description` VARCHAR(255),
 	        `scene_name` VARCHAR(255),
 	        `progress` INT(3),
 	        `last_error` varchar(255),
