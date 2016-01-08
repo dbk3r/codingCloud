@@ -9,6 +9,7 @@ define("DB", "brc_db");    // Der Datenbankname.
 
 define("CONTENT_DIR", "/var/www/html/cc/content/");    // Content/Data Verzeichnis.
 define("UPLOAD_DIR", "/var/www/html/cc/file-upload/");    // Upload Verzeichnis.
+define("PUBLISH_DIR", "/mnt/dps-p-austausch/CodingCloud/");    // mountpoint Samba Verzeichnis.
  
 define("CAN_REGISTER", "any");
 define("DEFAULT_ROLE", "member");

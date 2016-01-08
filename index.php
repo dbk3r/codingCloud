@@ -1,5 +1,10 @@
 <?php
 
+	header ("Expires: ".gmdate("D, d M Y H:i:s", time())." GMT");  
+	header ("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");  
+	header ("Cache-Control: no-cache, must-revalidate");  
+	header ("Pragma: no-cache");
+	
 	include_once 'includes/config.php';
 	
 ?>
@@ -10,8 +15,7 @@
 	<head>
 		<meta charset="utf-8">
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    	<meta name="viewport" content="width=device-width, initial-scale=1">
-    	<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">    	
     	<title>CC v-0.1</title>    	
     	<link rel="stylesheet" href="./includes/css/cc.css" rel="stylesheet" />
     	<link rel="stylesheet" href="./includes/css/upload.css" rel="stylesheet" />
@@ -39,9 +43,6 @@
  				
  				
 			});
-			
-			
-			
 			
 		</script>
     	
@@ -71,12 +72,12 @@
 			</div>
 			
 			<div id="tbl-content" class="nav-bar">
-				<table width=100%>
-					<tr>
+				<table width=100% cellpadding="0" cellspacing="4">
+					<tr class=tbl-header>
 						<td>Dateiname</td>
-						<td>Content</td>
-						<td>aktueller Workflow</td>
-						<td>Status</td>
+						<td width=100>Content</td>
+						<td align=right>Aktion</td>
+						<td width=100 align=center>Status</td>
 						
 					</tr>
 				</table>				

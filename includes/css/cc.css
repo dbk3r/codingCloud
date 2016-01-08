@@ -33,3 +33,10 @@ body {
 	font-size:12px;
 	
 }
+
+.tbl-header {
+	font-family:verdana, sans-serif; font-weight: bold;
+	font-size:12px;
+	color:#B4B4B4;
+	
+}
