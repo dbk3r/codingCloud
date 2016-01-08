@@ -19,8 +19,8 @@ define("SECURE", FALSE);    // NUR FÜR DIE ENTWICKLUNG!!!!
 define("LOGFILE", "/var/www/html/cc/log/cc.log");    // NUR FÜR DIE ENTWICKLUNG!!!!
 
 
-$contentType_Audio = array('mp3','wav', 'wma', 'flac');
-$contentType_Video = array('avi','mov', 'mxf', 'mp4', 'mkv', '3gp');
+$contentType_Audio = array('m4a', 'mp3','wav', 'wma', 'flac');
+$contentType_Video = array('avi','mov', 'mxf', 'mp4', 'mkv', '3gp', 'm4v');
 // A list of permitted file extensions
-$allowed = array('3gp', 'mpg', 'mkv', 'avi', 'mov', 'mxf', 'mp4', 'png', 'jpg', 'gif','zip', 'blend', 'mp3', 'wav', 'wma', 'flac');
+$allowed = array_merge($contentType_Audio, $contentType_Video);
 

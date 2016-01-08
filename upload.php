@@ -60,7 +60,7 @@ if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
 			} // ende unzip
 			
 		} // end if zip
-		rename($upload_dir.$org_filename, $content_dir.$uuid);
+		rename($upload_dir.$org_filename, $content_dir.$uuid."/".$org_filename);
 		if ($extension == "blend") {
 			# add blend-file to Database
 			add_DBContent($org_filename, end(explode(".", $org_filename)), $content_dir.$uuid."/", "Blender");
