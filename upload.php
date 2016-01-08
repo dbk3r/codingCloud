@@ -44,11 +44,11 @@ if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
 						
 						if($f_ext == "blend") {
 							// add blendfile to Database
-							add_DBContent($content_dir.$uuid."/".$filename, end(explode(".", $filename)), $uuid, "Blender");	
+							add_DBContent($filename, end(explode(".", $filename)), $content_dir.$uuid."/", "Blender");	
 						} else {
 							if(in_array(strtolower($f_ext), $allowed)){
 								// add file to Database									
-								add_DBContent($content_dir.$uuid."/".$filename, end(explode(".", $filename)), $uuid, $content_type);						
+								add_DBContent($filename, end(explode(".", $filename)), $content_dir.$uuid."/", $content_type);						
 							} else {
 								// delete file								
 								unlink($content_dir.$uuid."/".$filename);
@@ -63,12 +63,12 @@ if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
 		rename($upload_dir.$org_filename, $content_dir.$uuid);
 		if ($extension == "blend") {
 			# add blend-file to Database
-			add_DBContent($content_dir.$uuid."/".$org_filename, end(explode(".", $org_filename)), $uuid, "Blender");
+			add_DBContent($org_filename, end(explode(".", $org_filename)), $content_dir.$uuid."/", "Blender");
 		}
 		else {
 			# add uploaded File to Database
 			$content_type = getContentType($extension);
-			add_DBContent($content_dir.$uuid."/".$org_filename, end(explode(".", $org_filename)), $uuid, $content_type);
+			add_DBContent($org_filename, end(explode(".", $org_filename)), $content_dir.$uuid."/", $content_type);
 			
 		}
 		

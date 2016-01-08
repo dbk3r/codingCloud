@@ -15,7 +15,7 @@ function getContentType($ext) {
 	return $ContentType;
 }
 
-function add_DBContent($content_filename, $content_description, $uuid, $content_type) {
+function add_DBContent($content_filename, $content_description, $content_dir, $content_type) {
 	
 	
 }
