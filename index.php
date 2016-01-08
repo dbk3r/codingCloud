@@ -6,6 +6,7 @@
 	header ("Pragma: no-cache");
 	
 	include_once 'includes/config.php';
+	include_once 'includes/db_connect.php';
 	
 ?>
 
@@ -16,9 +17,11 @@
 		<meta charset="utf-8">
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">    	
-    	<title>CC v-0.1</title>    	
+    	<title>CC v-0.1</title>   
+    	 	
     	<link rel="stylesheet" href="./includes/css/cc.css" rel="stylesheet" />
     	<link rel="stylesheet" href="./includes/css/upload.css" rel="stylesheet" />
+    	
     	<script type="text/javascript" src="./includes/js/jquery-2.1.4.min.js"></script>
     	<script type="text/javascript" src="./includes/js/jquery.knob.js"></script>
     	<script type="text/javascript" src="./includes/js/jquery.ui.widget.js"></script>
