@@ -59,6 +59,10 @@ $(function(){
 
             if(progress == 100){
                 data.context.removeClass('working');
+                
+                data.context.fadeOut(function(){
+                	data.context.remove();
+                });
             }
         },
 

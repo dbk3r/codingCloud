@@ -1,7 +1,11 @@
 <?php
 
+include_once 'includes/config.php';
+
+
+$upload_dir = UPLOAD_DIR;
 // A list of permitted file extensions
-$allowed = array('png', 'jpg', 'gif','zip');
+$allowed = array('mov', 'mxf', 'mp4', 'png', 'jpg', 'gif','zip');
 
 if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
 
@@ -12,7 +16,7 @@ if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
 		exit;
 	}
 
-	if(move_uploaded_file($_FILES['upl']['tmp_name'], 'file-upload/'.$_FILES['upl']['name'])){
+	if(move_uploaded_file($_FILES['upl']['tmp_name'], $upload_dir.$_FILES['upl']['name'])){
 		echo '{"status":"success"}';
 		exit;
 	}
