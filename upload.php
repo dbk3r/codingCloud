@@ -26,7 +26,7 @@ if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
 	
 	if(move_uploaded_file($_FILES['upl']['tmp_name'], $upload_dir.$org_filename)){		
 		mkdir($content_dir.$uuid);		
-		if($extension == "zip") {
+		if(strtolower($extension) == "zip") {
 			
 			if(unzip_file($upload_dir.$org_filename, $content_dir.$uuid)) {
 				
