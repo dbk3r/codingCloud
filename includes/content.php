@@ -5,7 +5,7 @@
 
 		<table width=100% cellpadding="4" cellspacing="0">
 			<tr class=tbl-header>
-				<td>Dateiname</td>
+				<td width=400>Dateiname</td>
 				<td width=100>Content</td>
 				<td align=right>Aktion</td>
 				<td width=100 align=center>Status</td>						
