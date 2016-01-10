@@ -12,8 +12,7 @@
 			</tr>
 			
 			<?php
-				db_read_content($mysqli);		
-			
+				db_read_content($mysqli);			
 			?>
 			
 			
