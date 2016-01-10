@@ -1,15 +1,12 @@
 <?php
 
 include_once 'includes/config.php';
-//include_once 'includes/db_connect.php';
+include_once 'includes/db_connect.php';
 include_once 'includes/functions.php';
 
 
 $upload_dir = UPLOAD_DIR;
 $content_dir = CONTENT_DIR;
-
-
-
 
 if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
 	
