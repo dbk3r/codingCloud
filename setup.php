@@ -3,26 +3,37 @@
 	include_once 'includes/config.php';
 	
 	$mysqladmin = "root";
-	$mysqladmin_password = "DPSadm1n";
+	$mysqladmin_password = "nulleins";
 	
-	$brc_table_prefix = TABLE_PREPIX;
+	$CC_table_prefix = TABLE_PREPIX;
 	
 	// Create connection
-	$conn = new mysqli(HOST, $mysqladmin, $mysqladmin_password);
+	$conn = new mysqli(HOST, $mysqladmin, $mysqladmin_password);		
+	
 	// Check connection
 	if ($conn->connect_error) {
 	    die("Connection failed: " . $conn->connect_error);
 	} 
 	
+	// deleting Database
+	$sql = "DROP DATABASE IF EXISTS ".DB;
+	if ($conn->query($sql) === TRUE) {
+    echo "Database ".DB." deleted successfully\n";
+	} else {
+	    echo "Error deleting database: " . $conn->error . "\n";
+	}
+	
+	
+	
 	// Create database
 	$sql = "CREATE DATABASE IF NOT EXISTS ". DB;
 	if ($conn->query($sql) === TRUE) {
-	    echo "Database created successfully\n";
+	    echo "Database ".DB." created successfully\n";
 	} else {
 	    echo "Error creating database: " . $conn->error . "\n";
 	}
 	
-	$sql = "GRANT ALL PRIVILEGES ON ".DB.".* TO '".BRC_ADMIN."'@'%' IDENTIFIED BY '".BRC_ADMIN_PASSWORD."' WITH GRANT OPTION;";
+	$sql = "GRANT ALL PRIVILEGES ON ".DB.".* TO '".CC_ADMIN."'@'%' IDENTIFIED BY '".CC_ADMIN_PASSWORD."' WITH GRANT OPTION;";
 	if ($conn->query($sql) === TRUE) {
 		echo "user added successfully.\n";
 	} else {
@@ -33,13 +44,13 @@
 	
 	// connecting with new db_admin
 	
-	$conn = new mysqli(HOST, BRC_ADMIN, BRC_ADMIN_PASSWORD, DB);
+	$conn = new mysqli(HOST, CC_ADMIN, CC_ADMIN_PASSWORD, DB);
 	// Check connection
 	if ($conn->connect_error) {
 	    die("Connection failed: " . $conn->connect_error);
 	}
 	// adding needed tables
-	$table = $brc_table_prefix."members";
+	$table = $CC_table_prefix."members";
 	$db = DB;
 	$sql = "CREATE TABLE IF NOT EXISTS `$db`.`$table` (
 	    `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -55,7 +66,8 @@
 	    echo "Error creatingi $table: " . $conn->error . "\n";
 	}
 	
-	$table = $brc_table_prefix."login_attempts";
+	// add Table login_attemps
+	$table = $CC_table_prefix."login_attempts";
 	$db = DB;
 	$sql = "CREATE TABLE IF NOT EXISTS `$db`.`$table` (
 		`user_id` INT(11) NOT NULL,
@@ -67,15 +79,16 @@
 	    echo "Error creating $table: " . $conn->error . "\n";
 	}
 	
-	$table = $brc_table_prefix."content";
+	// add table content
+	$table = $CC_table_prefix."content";
 	$db = DB;
 	$sql = "CREATE TABLE IF NOT EXISTS `$db`.`$table` (
 	    	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	        `user_id` INT(11) NOT NULL,
-		`content_description` VARCHAR(255),
-		`content_filename` VARCHAR(255),
-		`content_type` VARCHAR(255),		
-		`content_uuid` VARCHAR(255) );
+			`content_description` VARCHAR(255),
+			`content_filename` VARCHAR(255),
+			`content_type` VARCHAR(255),		
+			`content_uuid` VARCHAR(255) );
 	        ";
 	if ($conn->query($sql) === TRUE) {
 	    echo "$table created successfully\n";
@@ -83,7 +96,59 @@
 	    echo "Error creating $table: " . $conn->error . "\n";
 	}
 	
-	$table = $brc_table_prefix."jobs";
+	// add table workflow
+	$table = $CC_table_prefix."wf";
+	$db = DB;
+	$sql = "CREATE TABLE IF NOT EXISTS `$db`.`$table` (
+	    	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	        `user_id` INT(11) NOT NULL,
+			`wf_description` VARCHAR(255),
+			`wf_preset` VARCHAR(255),
+			`wf_state` TINYINT(1) );
+	        ";
+	if ($conn->query($sql) === TRUE) {
+	    echo "$table created successfully\n";
+	} else {
+	    echo "Error creating $table: " . $conn->error . "\n";
+	}
+	
+	// add table process
+	$table = $CC_table_prefix."process";
+	$db = DB;
+	$sql = "CREATE TABLE IF NOT EXISTS `$db`.`$table` (
+	    	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	        `process_description` VARCHAR(255),
+			`process_type` VARCHAR(255),
+			`process_cmd` VARCHAR(1024),
+			`process_state` TINYINT(1) );
+	        ";
+	if ($conn->query($sql) === TRUE) {
+	    echo "$table created successfully\n";
+	} else {
+	    echo "Error creating $table: " . $conn->error . "\n";
+	}
+	
+	// add table encoder
+	$table = $CC_table_prefix."encoder";
+	$db = DB;
+	$sql = "CREATE TABLE IF NOT EXISTS `$db`.`$table` (
+	    	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	        `encoder_used_slots` INT(2),
+			`encoder_max_slots` INT(2),
+			`encoder_ffmpeg` TINYINT(1),
+			`encoder_ffmbc` TINYINT(1),
+			`encoder_blender` TINYINT(1),
+			`encoder_cpus` INT(2),
+			`encoder_ip` VARCHAR(25) );
+	        ";
+	if ($conn->query($sql) === TRUE) {
+	    echo "$table created successfully\n";
+	} else {
+	    echo "Error creating $table: " . $conn->error . "\n";
+	}
+		
+	// add table jobs
+	$table = $CC_table_prefix."jobs";
 	$db = DB;
 	$sql = "CREATE TABLE IF NOT EXISTS `$db`.`$table` (
 	    	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -98,12 +163,13 @@
 	        `workflow` varchar(50),
 	        `state` INT(1),
 	        `encoder_id` INT(11),
+	        `pid` INT(11),
 	        `encoder_slot` INT(2),
 	        `prio` INT(1),
 	        `output_format` VARCHAR(10) );
 	        ";
 	if ($conn->query($sql) === TRUE) {
-	    echo "$table created successfully\n";
+	    echo "$table created successfully. \n";
 	} else {
 	    echo "Error creating $table: " . $conn->error . "\n";
 	}
