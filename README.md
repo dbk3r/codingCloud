@@ -10,6 +10,7 @@ Html5, PHP Frontend and a [Perl Coded Backend] (https://github.com/dbk3r/cc_back
 
 Setup:
 - git-clone or copy Files to your web-folder
+- edit config.php
 - run `php setup.php` to prepare Database
 - be shure to allow mysql external access in my.cfg (`bind-adress = 0.0.0.0`)
 
