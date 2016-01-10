@@ -18,13 +18,12 @@
 	// deleting Database
 	$sql = "DROP DATABASE IF EXISTS ".DB;
 	if ($conn->query($sql) === TRUE) {
-    echo "Database ".DB." deleted successfully\n";
+    	echo "Database ".DB." deleted successfully\n";
 	} else {
 	    echo "Error deleting database: " . $conn->error . "\n";
 	}
 	
-	
-	
+		
 	// Create database
 	$sql = "CREATE DATABASE IF NOT EXISTS ". DB;
 	if ($conn->query($sql) === TRUE) {
