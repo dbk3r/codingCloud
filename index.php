@@ -75,15 +75,7 @@
 			</div>
 			
 			<div id="tbl-content" class="nav-bar">
-				<table width=100% cellpadding="0" cellspacing="4">
-					<tr class=tbl-header>
-						<td>Dateiname</td>
-						<td width=100>Content</td>
-						<td align=right>Aktion</td>
-						<td width=100 align=center>Status</td>
-						
-					</tr>
-				</table>				
+				<iframe allowtransparency="true" frameborder=no src=includes/content_iframe.php class=content-iframe></iframe>			
 			</div>
 			
 		</div> <!-- main-DIV -->
@@ -94,3 +86,8 @@
 	</body>
 	
 </html>
+
+<?php
+	include_once 'includes/db_disconnect.php';
+
+?>
