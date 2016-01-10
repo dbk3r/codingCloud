@@ -19,9 +19,5 @@ define("SECURE", FALSE);    // NUR FÜR DIE ENTWICKLUNG!!!!
 define("LOGFILE", "/var/www/html/cc/log/cc.log");    // NUR FÜR DIE ENTWICKLUNG!!!!
 
 
-$contentType_Audio = array('m4a', 'mp3','wav', 'wma', 'flac');
-$contentType_Video = array('avi','mov', 'mxf', 'mp4', 'mkv', '3gp', 'm4v');
-$contentType_Xtra = array('zip');
-// A list of permitted file extensions
-$allowed = array_merge($contentType_Audio, $contentType_Video, $contentType_Xtra);
+include 'content_allowed.php';
 

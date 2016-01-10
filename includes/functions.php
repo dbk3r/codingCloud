@@ -2,22 +2,61 @@
 include_once 'config.php';
 
 
-
 function write_log($log_text) {
 	$myfile = fopen(LOGFILE, "a") or die("Unable to open file!");	
 	fwrite($myfile, $log_text . "\n");
 	fclose($myfile);	
 }
 
-function getContentType($ext) {	
-	if(in_array(strtolower($ext), $contentType_Audio)) { $ContentType = "Audio" ;}
-	if(in_array(strtolower($ext), $contentType_Video)) { $ContentType = "Video" ;}	
-	return $ContentType;
-}
+function getContentType($ext) {
+	
+	include 'content_allowed.php';
+	$ret = "";
+	if(in_array(strtolower($ext), $contentType_Audio)) { $ret =  "Audio" ;}
+	if(in_array(strtolower($ext), $contentType_Video)) { $ret = "Video" ;}	
+	return $ret;
+}	
 
-function add_DBContent($content_filename, $content_description, $content_dir, $content_type) {
+function db_read_content($conn) {
 	
+	$sql = "SELECT * from cc_content ORDER BY id DESC";
+	$result = $conn->query($sql);
 	
+	if ($result->num_rows > 0) {
+    
+	    while($row = $result->fetch_assoc()) {
+	    	echo "<tr class=tbl-content-a>";
+	    	echo "<td>".$row["content_description"]."</td>";
+			echo "<td>".$row["content_type"]."</td>";
+			
+			echo "<td>";
+			// read Workflows
+			$sql2 = "SELECT * from cc_wf";
+			$workflows = $conn->query($sql2);
+			if ($workflows->num_rows > 0) {    
+	    		while($row2 = $workflows->fetch_assoc()) {
+	    			echo $row2["wf_description"] . " ";
+				}
+			}
+			echo "</td>";
+			echo "<td>".$row["content_state"]."</td>";
+			echo "</tr>";
+	        
+	    }
+	} else {
+	    echo "<tr class=tbl-content-a><td colspan=4>kein Content vorhanden</td></tr>";
+	}
+}	
+
+function add_DBContent($conn, $content_filename, $content_description, $content_dir, $content_type) {
+	
+	$sql = "INSERT INTO cc_content (content_description,content_filename,content_uuid,content_type) VALUES ('$content_description','$content_filename','$content_dir','$content_type')";
+
+	if ($conn->query($sql) === TRUE) {
+	    echo "New record created successfully";
+	} else {
+	    echo "Error: " . $sql . "<br>" . $conn->error;
+	}
 }
 
 function unzip_file($file, $path) {	

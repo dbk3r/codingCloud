@@ -86,7 +86,8 @@
 	        `user_id` INT(11) NOT NULL,
 			`content_description` VARCHAR(255),
 			`content_filename` VARCHAR(255),
-			`content_type` VARCHAR(255),		
+			`content_type` VARCHAR(255),	
+			`content_state` VARCHAR(255),	
 			`content_uuid` VARCHAR(255) );
 	        ";
 	if ($conn->query($sql) === TRUE) {

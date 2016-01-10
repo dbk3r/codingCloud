@@ -33,15 +33,23 @@
 								
 			$(window).resize(function(){
 				$('.mainDiv').css({
-				position:'absolute',
+					position:'absolute',
 					left: ($(window).width() - $('.mainDiv').outerWidth())/2,
-					top: ($(window).height() - $('.mainDiv').outerHeight())/2
+					top: ($(window).height() - $('.mainDiv').outerHeight())/2,
+					height:'100%'
 				});	
-
+				
+				$('.tbl-content').css({
+					height:'auto'
+				});
+				
 			});
 			
 			$( document ).ready(function() {
  				$(window).resize();
+ 				setInterval(function(){
+					$("#tbl-content").load('includes/content.php')
+				}, 2000);
  				
  				
  				
@@ -74,8 +82,8 @@
 				</table>
 			</div>
 			
-			<div id="tbl-content" class="nav-bar">
-				<iframe allowtransparency="true" frameborder=no src=includes/content_iframe.php class=content-iframe></iframe>			
+			<div id="tbl-content" class="tbl-content">
+				<?php include 'includes/content.php';	?>	
 			</div>
 			
 		</div> <!-- main-DIV -->
