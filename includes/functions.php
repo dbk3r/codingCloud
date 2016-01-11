@@ -35,7 +35,7 @@ function db_read_content($conn) {
 			$workflows = $conn->query($sql2);
 			if ($workflows->num_rows > 0) {    
 	    		while($row2 = $workflows->fetch_assoc()) {
-	    			echo $row2["wf_description"] . " ";
+	    			echo "<img class=trash id=". $row["content_uuid"] ." title='". $row2["wf_description"] ."' src=".$row2["wf_icon"] . "> ";
 				}
 			}
 			echo "	</div>\n";
