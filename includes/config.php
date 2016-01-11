@@ -9,7 +9,8 @@ define("DB", "cc_db");    // Der Datenbankname.
 define("TABLE_PREPIX", "cc_");    // Der Datenbankname.
 
 define("CONTENT_DIR", "/var/www/html/cc/content/");    // Content/Data Verzeichnis.
-define("UPLOAD_DIR", "/var/www/html/cc/file-upload/");    // Upload Verzeichnis.
+define("UPLOAD_DIR", "/var/www/html/cc/content/");    // Upload Verzeichnis.
+define("CONTENT_WEBPATH", "/cc/content/");    // Web-Path zum Content Verzeichnis.
 define("PUBLISH_DIR", "/mnt/nas/cc_share/CodingCloud/");    // mountpoint Samba Verzeichnis.
  
 define("CAN_REGISTER", "any");

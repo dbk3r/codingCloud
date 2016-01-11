@@ -8,6 +8,7 @@
 	include_once 'includes/config.php';
 	include_once 'includes/db_connect.php';
 	
+	
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +28,8 @@
     	<script type="text/javascript" src="./includes/js/jquery.ui.widget.js"></script>
     	<script type="text/javascript" src="./includes/js/jquery.iframe-transport.js"></script> 
     	<script type="text/javascript" src="./includes/js/jquery.fileupload.js"></script>   		
-		<script type="text/javascript" src="./includes/js/file-upload.js"></script>		
+		<script type="text/javascript" src="./includes/js/file-upload.js"></script>	
+		<script type="text/javascript" src="./includes/js/scripts.js"></script>			
 		
     	<script type="text/javascript">
 								
@@ -35,8 +37,8 @@
 				$('.mainDiv').css({
 					position:'absolute',
 					left: ($(window).width() - $('.mainDiv').outerWidth())/2,
-					top: ($(window).height() - $('.mainDiv').outerHeight())/2,
-					height:'100%'
+					
+					height:'auto'
 				});	
 				
 				$('.tbl-content').css({
@@ -45,15 +47,6 @@
 				
 			});
 			
-			$( document ).ready(function() {
- 				$(window).resize();
- 				setInterval(function(){
-					$("#tbl-content").load('includes/content.php')
-				}, 2000);
- 				
- 				
- 				
-			});
 			
 		</script>
     	

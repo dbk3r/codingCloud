@@ -2,6 +2,7 @@
 include_once 'config.php';
 
 
+
 function write_log($log_text) {
 	$myfile = fopen(LOGFILE, "a") or die("Unable to open file!");	
 	fwrite($myfile, $log_text . "\n");
@@ -25,11 +26,10 @@ function db_read_content($conn) {
 	if ($result->num_rows > 0) {
     
 	    while($row = $result->fetch_assoc()) {
-	    	echo "<tr class=tbl-content-a>";
-	    	echo "<td>".$row["content_description"]."</td>";
-			echo "<td>".$row["content_type"]."</td>";
-			
-			echo "<td>";
+	    	
+			echo "<div class=content id=".$row["content_uuid"].">\n";
+			echo "	<div class=content-a>".$row["content_description"]."</div>\n";			
+			echo "	<div class=content-b>\n";
 			// read Workflows
 			$sql2 = "SELECT * from cc_wf";
 			$workflows = $conn->query($sql2);
@@ -38,24 +38,26 @@ function db_read_content($conn) {
 	    			echo $row2["wf_description"] . " ";
 				}
 			}
-			echo "</td>";
-			echo "<td>".$row["content_state"]."</td>";
-			echo "</tr>";
-	        
+			echo "	</div>\n";
+			echo "	<div class=content-c>".$row["content_state"]."</div>\n";
+			echo "</div>\n";			        
 	    }
+		echo "<div class=content-head></div>";	
 	} else {
-	    echo "<tr class=tbl-content-a><td colspan=4>kein Content vorhanden</td></tr>";
+	    echo "<div class=content-head><div class=content-head-a>kein Content vorhanden</div></div>";
 	}
 }	
 
-function add_DBContent($conn, $content_filename, $content_description, $content_dir, $content_type) {
+function add_DBContent($conn, $content_filename, $content_uuid, $content_type) {
 	
-	$sql = "INSERT INTO cc_content (content_description,content_filename,content_uuid,content_type) VALUES ('$content_description','$content_filename','$content_dir','$content_type')";
+	$full_filename = CONTENT_DIR.$content_uuid."/".$content_filename;
+	$sql = "INSERT INTO cc_content (content_description,content_filename,content_uuid,content_type) VALUES ('$content_filename','$full_filename','$content_uuid','$content_type')";
 
 	if ($conn->query($sql) === TRUE) {
-	    echo "New record created successfully";
+	    
 	} else {
-	    echo "Error: " . $sql . "<br>" . $conn->error;
+		$ret_json = "add DBContent failed";
+	    
 	}
 }
 

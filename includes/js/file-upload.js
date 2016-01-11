@@ -66,7 +66,7 @@ $(function(){
             }
         },
 		
-		always: function(e, data){
+		always:function(e, data){
                        
             var phpResult = jQuery.parseJSON(data.result);
             if (phpResult.error) {
@@ -75,11 +75,8 @@ $(function(){
             		alert("Dateiformat wird nicht unterstützt!");
             	}
             	console.log(phpResult.error);
-            }
-            else 
-            {
-            	console.log(phpResult.success);
             } 
+            console.log(data.result);           
             
         },
 
