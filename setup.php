@@ -104,6 +104,7 @@
 	        `user_id` INT(11) NOT NULL,
 			`wf_description` VARCHAR(255),
 			`wf_preset` VARCHAR(255),
+			`wf_icon` VARCHAR(255),
 			`wf_state` TINYINT(1) );
 	        ";
 	if ($conn->query($sql) === TRUE) {
@@ -111,6 +112,9 @@
 	} else {
 	    echo "Error creating $table: " . $conn->error . "\n";
 	}
+	// insert wf delete Content
+	$sql = "INSERT INTO `$db`.`$table` (wf_description, wf_preset, wf_icon) VALUES ('delete Content','delContent','img/trash.png');";
+	$conn->query($sql);
 	
 	// add table process
 	$table = $CC_table_prefix."process";
@@ -127,6 +131,12 @@
 	} else {
 	    echo "Error creating $table: " . $conn->error . "\n";
 	}
+		
+	$sql = "INSERT INTO `$db`.`$table` (process_description, process_type, process_cmd) VALUES ('delete File Content','delContent','rm -r ');";
+	$conn->query($sql);
+	$db_del_cmd = "delete from ".$db.$table." where content_uuid=";
+	$sql = "INSERT INTO `$db`.`$table` (process_description, process_type, process_cmd) VALUES ('delete DB Content','delContent','$db_del_cmd');";
+	$conn->query($sql);
 	
 	// add table encoder
 	$table = $CC_table_prefix."encoder";
@@ -151,22 +161,15 @@
 	$table = $CC_table_prefix."jobs";
 	$db = DB;
 	$sql = "CREATE TABLE IF NOT EXISTS `$db`.`$table` (
-	    	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	        `startframe` INT(11) NOT NULL,
-	        `endframe` INT(11) NOT NULL,
-	        `output_folder` VARCHAR(255),
-	        `sourcefile` VARCHAR(255),
-	        `content_description` VARCHAR(255),
-	        `scene_name` VARCHAR(255),
-	        `progress` INT(3),
-	        `last_error` varchar(255),
-	        `workflow` varchar(50),
+	    	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,	        
+	        `uuid` VARCHAR(255),
+	        `cmd` VARCHAR(1024),
+	        `progress` INT(3),	        
 	        `state` INT(1),
 	        `encoder_id` INT(11),
 	        `pid` INT(11),
 	        `encoder_slot` INT(2),
-	        `prio` INT(1),
-	        `output_format` VARCHAR(10) );
+	        `prio` INT(1) );
 	        ";
 	if ($conn->query($sql) === TRUE) {
 	    echo "$table created successfully. \n";
