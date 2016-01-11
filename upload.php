@@ -17,7 +17,7 @@ if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
 	$uuid = generate_uuid();
 	
 	if(!in_array(strtolower($extension), $allowed)){
-		echo '{"status":"error"}';
+		echo '{"error":"notAllowed"}';		
 		exit;
 	}
 	
@@ -55,8 +55,10 @@ if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
 				} // end while  dirscan	
 							
 			} // ende unzip
+		echo '{"success":"success"}';	
 		exit;	
 		} // end if zip
+		
 		rename($upload_dir.$org_filename, $content_dir.$uuid."/".$org_filename);
 		if ($extension == "blend") {
 			# add blend-file to Database
@@ -70,11 +72,11 @@ if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
 			
 		}
 		
-		echo '{"status":"success"}';
+		echo '{"success":"success"}';
 		exit;
 	}
 }
 
-echo '{"status":"error"}';
+echo '{"error":"upload failed"}';
 exit;
 
