@@ -8,6 +8,7 @@ $(function(){
         $(this).parent().find('input').click();
     });
 
+        
     // Initialize the jQuery File Upload plugin
     $('#upload').fileupload({
 
@@ -37,7 +38,6 @@ $(function(){
                 if(tpl.hasClass('working')){
                     jqXHR.abort();
                 }
-
                 tpl.fadeOut(function(){
                     tpl.remove();
                 });
@@ -65,10 +65,29 @@ $(function(){
                 });
             }
         },
+		
+		always: function(e, data){
+                       
+            var phpResult = jQuery.parseJSON(data.result);
+            if (phpResult.error) {
+            	if(phpResult.error == "notAllowed")
+            	{
+            		alert("Dateiformat wird nicht unterstützt!");
+            	}
+            	console.log(phpResult.error);
+            }
+            else 
+            {
+            	console.log(phpResult.success);
+            } 
+            
+        },
 
         fail:function(e, data){
             // Something has gone wrong!
             data.context.addClass('error');
+            console.log("error");
+            alert('Fehler');
         }
 
     });
