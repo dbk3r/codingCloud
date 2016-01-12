@@ -30,6 +30,7 @@ Demo Coming soon.
 
 #TODO
 
+- Login, Logout, Register
 - Admin Panel
 - User Settings
 - Search Results
