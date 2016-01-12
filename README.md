@@ -15,6 +15,7 @@ Setup:
 - edit config.php
 - run `php setup.php` to prepare Database
 - be shure to allow mysql external access in my.cfg (`bind-adress = 0.0.0.0`)
+- enable write-access to content/upload-folder
 
 Use:
 - open http://your-webserver/[FOLDER] in browser
