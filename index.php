@@ -75,6 +75,11 @@
 				</table>
 			</div>
 			
+			<div id="search-content" class="tbl-content">
+				<?php include 'includes/search-bar.php';	?>	
+			</div>
+		
+			
 			<div id="tbl-content" class="tbl-content">
 				<?php include 'includes/content.php';	?>	
 			</div>
