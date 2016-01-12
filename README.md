@@ -29,3 +29,10 @@ Demo Coming soon.
 
 #TODO
 
+- Admin panel
+- User settings
+- Search Results
+- Filter Results
+- Content-Proberty-Panel
+
+- Perl-Backend Adaptions
