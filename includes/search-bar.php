@@ -1,7 +1,7 @@
 <div id=search-bar class=content-head>
 	
 	<div id=search-btn class="search">
-		<img  src=/img/search.png class="search-btn">
+		<img src=img/refresh.png class="refresh-btn">
 	</div>
 	
 	<div id=search-filter class="search">

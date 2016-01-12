@@ -145,11 +145,11 @@ td {
 	padding: 2px;
 	
 }
-.search-btn{
-	margin-top:-2px;
+.refresh-btn{
+	margin-top:-1px;
 	margin-right:10px;
-	width:20px;
-	height:20px;
+	width:18px;
+	height:18px;
 }
 .search-cb{
 	
@@ -166,5 +166,8 @@ td {
 }
 .settings-profile{
 	float:right;
+	margin-right:2px;
+}
+.p-margin{
 	margin-right:10px;
 }

@@ -22,6 +22,7 @@
     	 	
     	<link rel="stylesheet" href="./includes/css/cc.css" rel="stylesheet" />
     	<link rel="stylesheet" href="./includes/css/upload.css" rel="stylesheet" />
+    	<link rel="stylesheet" href="./includes/css/jquery.dropdown.css" rel="stylesheet" />
     	
     	<script type="text/javascript" src="./includes/js/jquery-2.1.4.min.js"></script>
     	<script type="text/javascript" src="./includes/js/jquery.knob.js"></script>
@@ -29,11 +30,13 @@
     	<script type="text/javascript" src="./includes/js/jquery.iframe-transport.js"></script> 
     	<script type="text/javascript" src="./includes/js/jquery.fileupload.js"></script>   		
 		<script type="text/javascript" src="./includes/js/file-upload.js"></script>	
-		<script type="text/javascript" src="./includes/js/scripts.js"></script>			
+		<script type="text/javascript" src="./includes/js/scripts.js"></script>		
+		<script type="text/javascript" src="./includes/js/jquery.dropdown.js"></script>		
 		
     	<script type="text/javascript">
 								
 			$(window).resize(function(){
+				
 				$('.mainDiv').css({
 					position:'absolute',
 					left: ($(window).width() - $('.mainDiv').outerWidth())/2,
@@ -52,14 +55,24 @@
     	
 	</head>
 	<body>
+		<?php
+			include_once'includes/menus.php';
+		?>
+		
 		
 		
 		
 		<div class=mainDiv id=mainDiv>
 			
 			<div id=settings class=settings>
-				<img src="img/avatar.png" class=settings-profile>
-				<img src="img/tool.png" class=settings-profile>
+				
+				<a id=data-profile href="#" data-jq-dropdown="#jq-menu-profile" data-horizontal-offset="-6" class="settings-profile p-margin">
+						<img src="img/arrow.png" class="settings-profile p-margin"><img id=a-avatar src="img/avatar.png" class="settings-profile">
+				</a>		
+				<a id=data-admin href="#" data-jq-dropdown="#jq-menu-admin" data-horizontal-offset="-6" class="settings-profile p-margin">
+					<img src="img/arrow.png" class="settings-profile p-margin"><img id=a-admin src="img/tool.png" class="settings-profile">
+				</a>
+				
 			</div>
 			
 			<div class=nav-bar id=nav-bar>
