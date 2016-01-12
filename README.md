@@ -29,10 +29,9 @@ Demo Coming soon.
 
 #TODO
 
-- Admin panel
-- User settings
+- Admin Panel
+- User Settings
 - Search Results
 - Filter Results
 - Content-Proberty-Panel
-
 - Perl-Backend Adaptions
