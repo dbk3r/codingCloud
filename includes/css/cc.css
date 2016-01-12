@@ -44,6 +44,8 @@ body {
 }
 .content .content-c {
 	float:left;
+	position: absolute;
+	right:20px;
 	margin-top:10px;
 	margin-left:4px;
 	width: auto;	
@@ -74,7 +76,9 @@ body {
 	width: 30%;	
 }
 .content-head .content-head-c {
-	float:left;
+	float:left;	
+	position: absolute;
+	right:20px;
 	margin-top:10px;
 	margin-left:4px;
 	width: auto;	
@@ -126,9 +130,9 @@ td {
 
 .search {
 	float:right;
-	margin-top:10px;
-	display: table-cell;
+	margin-top:10px;	
     vertical-align: middle;
+    height:auto;
 	
 }
 .search-filter {
@@ -167,7 +171,9 @@ td {
 .settings-profile{
 	float:right;
 	margin-right:2px;
+	display:inline;
 }
 .p-margin{
 	margin-right:10px;
 }
+
