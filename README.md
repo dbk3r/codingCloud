@@ -20,8 +20,7 @@ Use:
 - upload Audio/Video/Blender content
 - choose Transcoding/Rendering Workflow
 
-Run the Perl-Script on every PC with Perl-5 installed, as a Member of the Rendering and Transcoding Cloud.
+Run the Perl-Script on every PC with Perl-5 installed, as a Member/Node of the Rendering and Transcoding Cloud.
 
-How does it work:
 
 Demo Coming soon.
