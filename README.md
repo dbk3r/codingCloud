@@ -4,9 +4,6 @@ php frontend, perl encoding backing
 still in dev, not useable!
 --------------------------
 
-#TODO
-.
-
 
 
 Open-Source Transcoding and Rendering Plattform for Video, Audio and 3D-Asset (Blender) using ffmpeg, ffmbc and Blender as Coder/Renderer.
@@ -29,3 +26,6 @@ Run the Perl-Script on every PC with Perl-5 installed, as a Member/Node of the R
 
 
 Demo Coming soon.
+
+#TODO
+
