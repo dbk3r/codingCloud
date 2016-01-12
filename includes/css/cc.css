@@ -8,6 +8,7 @@
 	
 }
 
+
 body {
 	background-color: #eeeeee;
 }
@@ -88,7 +89,7 @@ body {
 	background-color:#373a3d;
 	width: auto;
 	margin-left:10px;
-	margin-top:10px;
+	margin-top:50px;
 	margin-right:10px;
 	margin-bottom:10px;
 	
@@ -123,3 +124,47 @@ td {
 	margin-bottom:10px;
 }
 
+.search {
+	float:right;
+	margin-top:10px;
+	display: table-cell;
+    vertical-align: middle;
+	
+}
+.search-filter {
+	margin-right:10px;
+}
+.search-input{
+	font-family:verdana, sans-serif; font-weight: normal;
+	font-size:12px;
+	margin-top:-5px;
+	margin-right:10px;
+	width:400px;
+	height:20px;
+	border: 1px solid #eeeeee;	
+	padding: 2px;
+	
+}
+.search-btn{
+	margin-top:-2px;
+	margin-right:10px;
+	width:20px;
+	height:20px;
+}
+.search-cb{
+	
+	vertical-align: middle;
+}
+.settings {
+	width:100%;
+	background-color: #ffffff;	
+	margin-top:10px;
+	height:30px;
+	margin-right: 30px;
+	position:absolute;
+	
+}
+.settings-profile{
+	float:right;
+	margin-right:10px;
+}

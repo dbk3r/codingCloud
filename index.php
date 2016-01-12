@@ -54,7 +54,13 @@
 	<body>
 		
 		
+		
 		<div class=mainDiv id=mainDiv>
+			
+			<div id=settings class=settings>
+				<img src="img/avatar.png" class=settings-profile>
+				<img src="img/tool.png" class=settings-profile>
+			</div>
 			
 			<div class=nav-bar id=nav-bar>
 				<table width=100%>
