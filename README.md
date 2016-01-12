@@ -15,7 +15,8 @@ Setup:
 - be shure to allow mysql external access in my.cfg (`bind-adress = 0.0.0.0`)
 
 Use:
-- open http://your-webserver/cc in browser
+- open http://your-webserver/[FOLDER] in browser
+- add Processes (Transfer, Transcoding, Rendering, etc.) and Workflows (Set of Processes)
 - upload Audio/Video/Blender content
 - choose Transcoding/Rendering Workflow
 
