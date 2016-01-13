@@ -81,16 +81,8 @@ $(function(){
             }
         },
 		
-		always:function(e, data){
-						                       
-            var phpResult = jQuery.parseJSON(data.result);
-            if (phpResult.error) {
-            	if(phpResult.error == "notAllowed")
-            	{
-            		alert("Dateiformat wird nicht unterstützt!");
-            	}
-            	console.log(phpResult.error);
-            } 
+		always:function(e, data){						                       
+            
             contentReload();
             console.log(data.result);           
             
@@ -98,9 +90,8 @@ $(function(){
 
         fail:function(e, data){
             // Something has gone wrong!
-            data.context.addClass('error');
-            console.log("error");
-            alert('Fehler');
+            data.context.addClass('error');            
+            
         }
 
     });

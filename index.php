@@ -1,81 +1,8 @@
 <?php
-
-	header ("Expires: ".gmdate("D, d M Y H:i:s", time())." GMT");  
-	header ("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");  
-	header ("Cache-Control: no-cache, must-revalidate");  
-	header ("Pragma: no-cache");
-	
-	include_once 'includes/config.php';
-	include_once 'includes/db_connect.php';
-	
-	
+	include_once './includes/header.php';
+	include_once './includes/menu-bar.php';
+			
 ?>
-
-<!DOCTYPE html>
-
-<html>
-	<head>
-		<meta charset="utf-8">
-    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    	<meta name="viewport" content="width=device-width, initial-scale=1">    	
-    	<title>CC v-0.1</title>   
-    	 	
-    	<link rel="stylesheet" href="./includes/css/cc.css" rel="stylesheet" />
-    	<link rel="stylesheet" href="./includes/css/upload.css" rel="stylesheet" />
-    	<link rel="stylesheet" href="./includes/css/jquery.dropdown.css" rel="stylesheet" />
-    	
-    	<script type="text/javascript" src="./includes/js/jquery-2.1.4.min.js"></script>
-    	<script type="text/javascript" src="./includes/js/jquery.knob.js"></script>
-    	<script type="text/javascript" src="./includes/js/jquery.ui.widget.js"></script>
-    	<script type="text/javascript" src="./includes/js/jquery.iframe-transport.js"></script> 
-    	<script type="text/javascript" src="./includes/js/jquery.fileupload.js"></script>   		
-		<script type="text/javascript" src="./includes/js/file-upload.js"></script>	
-		<script type="text/javascript" src="./includes/js/scripts.js"></script>		
-		<script type="text/javascript" src="./includes/js/jquery.dropdown.js"></script>		
-		
-    	<script type="text/javascript">
-								
-			$(window).resize(function(){
-				
-				$('.mainDiv').css({
-					position:'absolute',
-					left: ($(window).width() - $('.mainDiv').outerWidth())/2,
-					
-					height:'auto'
-				});	
-				
-				$('.tbl-content').css({
-					height:'auto'
-				});
-				
-				contentReload();
-				
-			});
-			
-			
-		</script>
-    	
-	</head>
-	<body>
-		<?php
-			include_once'includes/menus.php';
-		?>
-		
-		
-		
-		
-		<div class=mainDiv id=mainDiv>
-			
-			<div id=settings class=settings>
-				
-				<a title="Benutzer Einstellungen" id=data-profile href="#" data-jq-dropdown="#jq-menu-profile" data-horizontal-offset="-6" class="settings-profile p-margin">
-						<img src="img/arrow.png" class="settings-profile p-margin"><img id=a-avatar src="img/avatar.png" class="settings-profile">
-				</a>		
-				<a title="Admin Einstellungen" id=data-admin href="#" data-jq-dropdown="#jq-menu-admin" data-horizontal-offset="-6" class="settings-profile p-margin">
-					<img src="img/arrow.png" class="settings-profile p-margin"><img id=a-admin src="img/tool.png" class="settings-profile">
-				</a>
-				
-			</div>
 			
 			<div class=nav-bar id=nav-bar>
 				<table width=100%>
@@ -104,17 +31,10 @@
 			<div id="tbl-content" class="tbl-content">
 				<?php include 'includes/content.php';	?>	
 			</div>
-			
-		</div> <!-- main-DIV -->
-		
-		
-		
-		
-	</body>
-	
-</html>
+
+
 
 <?php
-	include_once 'includes/db_disconnect.php';
+	include_once './includes/footer.php';
 
-?>
+?>	

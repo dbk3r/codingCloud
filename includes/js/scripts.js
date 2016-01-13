@@ -64,7 +64,11 @@ function contentReload(){
 	};	
 $(document).ready( function() {			
  	
-	
+	$("#save").click(function() {
+		alert("save");
+		window.location.href = "index.php";
+									
+	});
 			
 	$(window).resize();
 	$("#refresh-btn").click(function() {
