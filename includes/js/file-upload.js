@@ -18,7 +18,19 @@ $(function(){
         // This function is called when a file is added to the queue;
         // either via the browse button, or via drag/drop:
         add: function (e, data) {
+        	
+        	var goUpload = true;
+            var uploadFile = data.files[0];
+        	if (!(/\.(zip|blend|wav|wma|mp3|m4a|flac|mov|3gp|mkv|mxf|mp4|mpg|avi|wmv|)$/i).test(uploadFile.name)) {
+                ccAlert("Das Dateiformat ["+ uploadFile.name.substr( (uploadFile.name.lastIndexOf('.') +1) ) +"] wird nicht unterstützt!");
+                $("#ccAlertBox").show();
+                $(window).click(function() {
+					$("#ccAlertBox").remove();
+				});
+                goUpload = false;
+            } 
 
+			if(goUpload == true) {
             var tpl = $('<li class="working"><input type="text" value="0" data-width="20" data-height="20"'+
                 ' data-fgColor="#0788a5" data-readOnly="1" data-bgColor="#3e4043" /><p></p><span></span></li>');
 
@@ -43,9 +55,11 @@ $(function(){
                 });
 
             });
-
+			
             // Automatically upload the file once it is added to the queue
-            var jqXHR = data.submit();
+            
+            	var jqXHR = data.submit();
+            }
         },
 
         progress: function(e, data){
@@ -68,7 +82,7 @@ $(function(){
         },
 		
 		always:function(e, data){
-                       
+						                       
             var phpResult = jQuery.parseJSON(data.result);
             if (phpResult.error) {
             	if(phpResult.error == "notAllowed")
