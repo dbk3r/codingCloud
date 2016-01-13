@@ -63,7 +63,7 @@ $(function(){
                 data.context.fadeOut(function(){
                 	data.context.remove();
                 });
-                contentReload();
+                
             }
         },
 		
@@ -77,6 +77,7 @@ $(function(){
             	}
             	console.log(phpResult.error);
             } 
+            contentReload();
             console.log(data.result);           
             
         },

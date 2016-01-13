@@ -48,6 +48,8 @@
 					height:'auto'
 				});
 				
+				contentReload();
+				
 			});
 			
 			
