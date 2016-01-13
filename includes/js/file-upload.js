@@ -63,6 +63,7 @@ $(function(){
                 data.context.fadeOut(function(){
                 	data.context.remove();
                 });
+                contentReload();
             }
         },
 		

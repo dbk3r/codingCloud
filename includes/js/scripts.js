@@ -1,10 +1,5 @@
 
-$(document).ready( function() {			
- 	
-			
-	$(window).resize();
-	
-	setInterval(function(){		
+function contentReload(){		
 	
 		$("#tbl-content").load('includes/content.php',function() {
 			$(".content").mouseover(function() {
@@ -29,27 +24,39 @@ $(document).ready( function() {
 			$("#"+this.id+" .trash").mousedown(function() {
 				$("#"+this.id+" .trash").css({
 					border:'1px solid #ff0000'
-				});
+				}),
+				
+				$(".trash").mouseup(function() {
+							
+					$("#"+this.id).remove(),
+					$.ajax({
+					    url: "includes/db_action.php",
+					    type: "POST",
+					    data: 'del='+this.id,
+					    success: function(data) {
+					            
+					    },  
+					});
+				
+				}); // end trash click
+				
 			});
 			
 			
-			$(".trash").dblclick(function() {
-							
-				$("#"+this.id).remove(),
-				$.ajax({
-				    url: "includes/db_action.php",
-				    type: "POST",
-				    data: 'del='+this.id,
-				    success: function(data) {
-				            
-				    },  
-				});
-				
-			}); // end trash click
+			
 				
 		}); // end content reload
     
-	}, 2000);		
+	};	
+$(document).ready( function() {			
+ 	
+			
+	$(window).resize();
+	$("#refresh-btn").click(function() {
+		contentReload();
+	});
+	
+		
  				
 });
 
