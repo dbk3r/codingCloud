@@ -103,7 +103,8 @@
 	    	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	        `user_id` INT(11) NOT NULL,
 			`wf_description` VARCHAR(255),
-			`wf_preset` VARCHAR(255),
+			`wf_short` VARCHAR(255),
+			`wf_pids` VARCHAR(255),
 			`wf_icon` VARCHAR(255),
 			`wf_state` TINYINT(1) );
 	        ";
@@ -113,7 +114,7 @@
 	    echo "Error creating $table: " . $conn->error . "\n";
 	}
 	// insert wf delete Content
-	$sql = "INSERT INTO `$db`.`$table` (wf_description, wf_preset, wf_icon) VALUES ('delete Content','delContent','img/trash.png');";
+	$sql = "INSERT INTO `$db`.`$table` (wf_description, wf_short, wf_pids ,wf_icon) VALUES ('delete Content','trash', 'delContent', 'img/trash.png');";
 	$conn->query($sql);
 	
 	// add table process
@@ -122,7 +123,7 @@
 	$sql = "CREATE TABLE IF NOT EXISTS `$db`.`$table` (
 	    	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	        `process_description` VARCHAR(255),
-			`process_type` VARCHAR(255),
+			`process_type` VARCHAR(255),			
 			`process_cmd` VARCHAR(1024),
 			`process_state` TINYINT(1) );
 	        ";
@@ -132,10 +133,10 @@
 	    echo "Error creating $table: " . $conn->error . "\n";
 	}
 		
-	$sql = "INSERT INTO `$db`.`$table` (process_description, process_type, process_cmd) VALUES ('delete File Content','delContent','rm -r ');";
+	$sql = "INSERT INTO `$db`.`$table` (process_description, process_type) VALUES ('delete File Content','delContent');";
 	$conn->query($sql);
 	$db_del_cmd = "delete from ".$db.$table." where content_uuid=";
-	$sql = "INSERT INTO `$db`.`$table` (process_description, process_type, process_cmd) VALUES ('delete DB Content','delContent','$db_del_cmd');";
+	$sql = "INSERT INTO `$db`.`$table` (process_description, process_type, process_cmd) VALUES ('delete DB Content','deldbContent','$db_del_cmd');";
 	$conn->query($sql);
 	
 	// add table encoder
@@ -166,7 +167,8 @@
 	$sql = "CREATE TABLE IF NOT EXISTS `$db`.`$table` (
 	    	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,	        
 	        `uuid` VARCHAR(255),
-	        `filename` VARCHAR(512),
+	        `src_filename` VARCHAR(512),
+	        `dest_filename` VARCHAR(512),
 	        `content_type` VARCHAR(255),
 	        `job_type` VARCHAR(255),
 	        `coder_bin` VARCHAR(255),

@@ -12,6 +12,22 @@ function ccAlert(text){
 }
 
 
+function dbAction(uuid, action, post) {
+	
+	if($action == "del")
+	{
+		$("#"+uuid).remove(),
+			$.ajax({
+		    url: "includes/db_action.php",
+		    type: "POST",
+		    data: 'del='+ uuid,
+		    success: function(data) {
+		            
+		    },  
+		});
+	}
+	
+}
 
 function contentReload(){		
 	
@@ -22,42 +38,9 @@ function contentReload(){
 		
 			$(".content").click(function() {
 				
-			});
+			});			
 			
-			$("#"+this.id+" .trash").mouseover(function() {
-				$("#"+this.id+" .trash").css({
-					border:'1px solid #000'
-				});
-			});
-			$("#"+this.id+" .trash").mouseout(function() {
-				$("#"+this.id+" .trash").css({
-					border:'0px solid #000'
-				});
-			});
-			
-			$("#"+this.id+" .trash").mousedown(function() {
-				$("#"+this.id+" .trash").css({
-					border:'1px solid #ff0000'
-				}),
-				
-				$(".trash").mouseup(function() {
-							
-					$("#"+this.id).remove(),
-					$.ajax({
-					    url: "includes/db_action.php",
-					    type: "POST",
-					    data: 'del='+this.id,
-					    success: function(data) {
-					            
-					    },  
-					});
-				
-				}); // end trash click
-				
-			});
-			
-			
-			
+		
 				
 		}); // end content reload
     
