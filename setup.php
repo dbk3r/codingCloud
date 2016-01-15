@@ -148,6 +148,9 @@
 			`encoder_ffmpeg` TINYINT(1),
 			`encoder_ffmbc` TINYINT(1),
 			`encoder_blender` TINYINT(1),
+			`encoder_bmxtranswrap` TINYINT(1),
+			`encoder_mediainfo` TINYINT(1),
+			`encoder_curl` TINYINT(1),
 			`encoder_cpus` INT(2),
 			`encoder_ip` VARCHAR(25) );
 	        ";
@@ -163,6 +166,9 @@
 	$sql = "CREATE TABLE IF NOT EXISTS `$db`.`$table` (
 	    	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,	        
 	        `uuid` VARCHAR(255),
+	        `filename` VARCHAR(512),
+	        `content_type` VARCHAR(255),
+	        `job_type` VARCHAR(255),
 	        `cmd` VARCHAR(1024),
 	        `progress` INT(3),	        
 	        `state` INT(1),
