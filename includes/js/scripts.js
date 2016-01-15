@@ -12,20 +12,17 @@ function ccAlert(text){
 }
 
 
-function dbAction(uuid, action, post) {
-	
-	if($action == "del")
-	{
-		$("#"+uuid).remove(),
-			$.ajax({
+function dbAction(uuid, action) {
+			
+		$.ajax({
 		    url: "includes/db_action.php",
 		    type: "POST",
-		    data: 'del='+ uuid,
+		    data: action +'='+ uuid,
 		    success: function(data) {
 		            
-		    },  
-		});
-	}
+		    }
+	    });
+	
 	
 }
 
