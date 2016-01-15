@@ -169,6 +169,7 @@
 	        `filename` VARCHAR(512),
 	        `content_type` VARCHAR(255),
 	        `job_type` VARCHAR(255),
+	        `coder_bin` VARCHAR(255),
 	        `cmd` VARCHAR(1024),
 	        `progress` INT(3),	        
 	        `state` INT(1),
