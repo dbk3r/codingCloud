@@ -163,6 +163,9 @@
 	$sql = "CREATE TABLE IF NOT EXISTS `$db`.`$table` (
 	    	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,	        
 	        `uuid` VARCHAR(255),
+	        `content_type` VARCHAR(255),
+	        `job_type` VARCHAR(255),
+	        `coder_bin` VARCHAR(255),
 	        `cmd` VARCHAR(1024),
 	        `progress` INT(3),	        
 	        `state` INT(1),
