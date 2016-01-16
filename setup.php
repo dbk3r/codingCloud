@@ -114,7 +114,7 @@
 	    echo "Error creating $table: " . $conn->error . "\n";
 	}
 	// insert wf delete Content
-	$sql = "INSERT INTO `$db`.`$table` (wf_description, wf_short, wf_pids ,wf_icon) VALUES ('delete Content','trash', 'delContent', 'img/trash.png');";
+	$sql = "INSERT INTO `$db`.`$table` (wf_description, wf_short, wf_pids ,wf_icon) VALUES ('delete Content','delContent', 'delContentDB,delContent', 'img/trash.png');";
 	$conn->query($sql);
 	
 	// add table process
@@ -132,12 +132,10 @@
 	} else {
 	    echo "Error creating $table: " . $conn->error . "\n";
 	}
-		
+	$sql = "INSERT INTO `$db`.`$table` (process_description, process_type) VALUES ('delete Content DB ','delContentDB');";
+	$conn->query($sql);	
 	$sql = "INSERT INTO `$db`.`$table` (process_description, process_type) VALUES ('delete File Content','delContent');";
-	$conn->query($sql);
-	$db_del_cmd = "delete from ".$db.$table." where content_uuid=";
-	$sql = "INSERT INTO `$db`.`$table` (process_description, process_type, process_cmd) VALUES ('delete DB Content','deldbContent','$db_del_cmd');";
-	$conn->query($sql);
+	$conn->query($sql);	
 	
 	// add table encoder
 	$table = $CC_table_prefix."encoder";

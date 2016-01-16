@@ -12,14 +12,14 @@ function ccAlert(text){
 }
 
 
-function dbAction(uuid, action) {
+function dbAction(wf, uuid) {
 			
 		$.ajax({
 		    url: "includes/db_action.php",
 		    type: "POST",
-		    data: action +'='+ uuid,
+		    data: 'wf' +'='+ wf + '&uuid='+uuid,
 		    success: function(data) {
-		            
+		    	contentReload();        
 		    }
 	    });
 	
