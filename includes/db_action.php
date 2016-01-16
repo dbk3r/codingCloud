@@ -30,7 +30,7 @@
 		
 	}
 		
-	sleep (5);
+	sleep (2);
 
 	include_once 'db_disconnect.php';
 	

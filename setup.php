@@ -132,9 +132,10 @@
 	} else {
 	    echo "Error creating $table: " . $conn->error . "\n";
 	}
-	$sql = "INSERT INTO `$db`.`$table` (process_description, process_type) VALUES ('delete Content DB ','delContentDB');";
-	$conn->query($sql);	
+	
 	$sql = "INSERT INTO `$db`.`$table` (process_description, process_type) VALUES ('delete File Content','delContent');";
+	$conn->query($sql);	
+	$sql = "INSERT INTO `$db`.`$table` (process_description, process_type) VALUES ('delete Content DB ','delContentDB');";
 	$conn->query($sql);	
 	
 	// add table encoder
