@@ -32,7 +32,11 @@ function dbAction(wf, uuid) {
 
 function contentReload(){		
 	
-		$("#tbl-content").load('includes/content.php',function() {
+		if($("#audio-filter").is(':checked')) {	var af = "f_audio=on"; } else { af=""; }
+		if($("#video-filter").is(':checked')) { var av = "&f_video=on"; } else { av=""; }
+		if($("#blender-filter").is(':checked')) {	var ab = "&f_blender=on"; } else { ab=""; }
+		
+		$("#tbl-content").load('includes/content.php?'+af+av+ab,function() {
 			$(".content").mouseover(function() {
 				
 			});
@@ -46,7 +50,13 @@ function contentReload(){
 		}); // end content reload
     
 	};	
+	
 $(document).ready( function() {			
+ 	
+ 	$(".search-cb").click(function() {
+		contentReload();
+									
+	});
  	
 	$("#save").click(function() {
 		alert("save");

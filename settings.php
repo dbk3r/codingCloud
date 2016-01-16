@@ -19,6 +19,19 @@
 		
 		<div id-settings-content class=tbl-content>
 			
+			<?php
+			if($_GET['show'] == "profile")
+			{
+				include_once 'includes/settings_profile.php';
+			}
+			
+			if($_GET['show'] == "xtra")
+			{
+				include_once 'includes/settings_xtra.php';
+			}
+		?>
+			
+			
 			<div id=save class="settings-btn float-right">speichern</div>
 		</div>
 		

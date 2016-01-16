@@ -2,6 +2,11 @@
 	include_once 'functions.php';
 	include_once 'db_connect.php';
 	
+	$f_audio = $_GET['f_audio'];
+	$f_video = $_GET['f_video'];
+	$f_blender = $_GET['f_blender'];
+	
+	
 ?>
 
 		<div class=content-head>			
@@ -11,7 +16,7 @@
 		</div>	
 			
 			<?php
-				db_read_content($mysqli);			
+				db_read_content($mysqli, $f_audio, $f_video , $f_blender);			
 			?>
 
 	
