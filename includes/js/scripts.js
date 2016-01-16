@@ -13,6 +13,10 @@ function ccAlert(text){
 
 
 function dbAction(wf, uuid) {
+	
+				
+		$("#"+uuid).addClass( "content-red", 400 );
+		
 			
 		$.ajax({
 		    url: "includes/db_action.php",

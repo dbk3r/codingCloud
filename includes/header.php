@@ -28,6 +28,7 @@
     	<script type="text/javascript" src="./includes/js/jquery-2.1.4.min.js"></script>
     	<script type="text/javascript" src="./includes/js/jquery.knob.js"></script>
     	<script type="text/javascript" src="./includes/js/jquery.ui.widget.js"></script>
+    	<script type="text/javascript" src="./includes/js/jquery-ui.js"></script>
     	<script type="text/javascript" src="./includes/js/jquery.iframe-transport.js"></script> 
     	<script type="text/javascript" src="./includes/js/jquery.fileupload.js"></script>   		
 		<script type="text/javascript" src="./includes/js/file-upload.js"></script>	
