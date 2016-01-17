@@ -84,10 +84,19 @@
 	$sql = "CREATE TABLE IF NOT EXISTS `$db`.`$table` (
 	    	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	        `user_id` INT(11) NOT NULL,
-			`content_description` VARCHAR(255),
+			`content_description` VARCHAR(255),	
+			`content_thumbnail` VARCHAR(255),		
 			`content_filename` VARCHAR(255),
-			`content_type` VARCHAR(255),	
-			`content_state` VARCHAR(255),	
+			`content_filesize` VARCHAR(50),
+			`content_duration` VARCHAR(50),
+			`content_videoCodec` VARCHAR(50),
+			`content_videoDimension` VARCHAR(50),
+			`content_videoBitrate` VARCHAR(50),
+			`content_audioCodec` VARCHAR(50),
+			`content_audioChannel` VARCHAR(50),
+			`content_audioSamplingrate` VARCHAR(50),
+			`content_type` VARCHAR(50),	
+			`content_state` VARCHAR(50),	
 			`content_uuid` VARCHAR(255) );
 	        ";
 	if ($conn->query($sql) === TRUE) {
@@ -113,8 +122,10 @@
 	} else {
 	    echo "Error creating $table: " . $conn->error . "\n";
 	}
-	// insert wf delete Content
+	// insert Workflows
 	$sql = "INSERT INTO `$db`.`$table` (wf_description, wf_short, wf_pids ,wf_icon) VALUES ('delete Content','delContent', 'delContentDB,delContent', 'img/trash.png');";
+	$conn->query($sql);
+	$sql = "INSERT INTO `$db`.`$table` (wf_description, wf_short, wf_pids ,wf_icon) VALUES ('Ingest Content','IngestContent', 'mediainfo,genThumbnail', 'img/ingest.png');";
 	$conn->query($sql);
 	
 	// add table process
@@ -136,6 +147,10 @@
 	$sql = "INSERT INTO `$db`.`$table` (process_description, process_type) VALUES ('delete File Content','delContent');";
 	$conn->query($sql);	
 	$sql = "INSERT INTO `$db`.`$table` (process_description, process_type) VALUES ('delete Content DB ','delContentDB');";
+	$conn->query($sql);	
+	$sql = "INSERT INTO `$db`.`$table` (process_description, process_type) VALUES ('get Content Infos ','mediainfo');";	
+	$conn->query($sql);	
+	$sql = "INSERT INTO `$db`.`$table` (process_description, process_type) VALUES ('get Thumbnail ','genThumbnail');";	
 	$conn->query($sql);	
 	
 	// add table encoder

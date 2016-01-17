@@ -2,9 +2,18 @@
 	include_once 'functions.php';
 	include_once 'db_connect.php';
 	
-	$f_audio = $_GET['f_audio'];
-	$f_video = $_GET['f_video'];
-	$f_blender = $_GET['f_blender'];
+	if (!empty($_GET))
+	{
+		$f_audio = $_GET['f_audio']; 
+		$f_video = $_GET['f_video'];
+		$f_blender = $_GET['f_blender'];
+	}
+	else
+	{
+		$f_audio = ""; 
+		$f_video = "";
+		$f_blender = "";
+	}
 	
 	
 ?>

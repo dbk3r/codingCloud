@@ -41,7 +41,12 @@ function db_read_content($conn, $f_audio, $f_video, $f_blender) {
 	    while($row = $result->fetch_assoc()) {
 	    	
 			echo "<div class=content id=".$row["content_uuid"].">\n";
-			echo "	<div class=content-a>".$row["content_description"]."</div>\n";			
+			echo "	<div class=content-a>\n";
+			echo "<table><tr>";
+			echo "<td><img src='content/".$row["content_uuid"]."/".$row["content_thumbnail"]."'></td>";
+			echo "<td>".$row["content_description"]."</td>";
+			echo "<tr></table>";	
+			echo "</div>\n";		
 			echo "	<div class=content-b>\n";
 			// read Workflows
 			$sql2 = "SELECT * from cc_wf";
@@ -61,10 +66,42 @@ function db_read_content($conn, $f_audio, $f_video, $f_blender) {
 	}
 }	
 
+function add_DBJob($mysqli, $db, $uuid, $wf) {
+	
+		$sql = "SELECT * from cc_content where content_uuid='".$uuid."'";
+		$result = $mysqli->query($sql);
+		while($c = $result->fetch_assoc()) {
+			$src_filename =  $c['content_filename'];
+			$content_type = $c['content_type'];	
+		}
+	
+		$sql = "SELECT * from cc_wf WHERE wf_short='" . $wf . "'";
+		$result = $mysqli->query($sql);	
+    		
+	    while($row = $result->fetch_assoc()) {
+			
+			// read processes		    	
+			$pids = explode(',',$row["wf_pids"]);
+			
+			foreach($pids as $pid) {
+				write_log($pid);
+			    $sql2 = "SELECT * from cc_process where process_type='".$pid."'";
+				$processes = $mysqli->query($sql2);
+			    
+	    		while($pidRow = $processes->fetch_assoc()) {
+	    			$sql3 = "INSERT INTO `$db`.`cc_jobs` (uuid, job_type,state,content_type,src_filename) VALUES ('".$uuid."','".$pidRow["process_type"]."','0','".$content_type."','".$src_filename."');";
+					$mysqli->query($sql3);
+				}
+			
+			}
+	    }
+	
+}
+
 function add_DBContent($conn, $content_filename, $content_uuid, $content_type) {
 	
-	$full_filename = CONTENT_DIR.$content_uuid."/".$content_filename;
-	$sql = "INSERT INTO cc_content (content_description,content_filename,content_uuid,content_type) VALUES ('$content_filename','$full_filename','$content_uuid','$content_type')";
+	
+	$sql = "INSERT INTO cc_content (content_description,content_filename,content_uuid,content_type) VALUES ('$content_filename','$content_filename','$content_uuid','$content_type')";
 
 	if ($conn->query($sql) === TRUE) {
 	    
@@ -73,6 +110,7 @@ function add_DBContent($conn, $content_filename, $content_uuid, $content_type) {
 	    
 	}
 }
+
 
 function unzip_file($file, $path) {	
 	
