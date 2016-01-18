@@ -55,6 +55,7 @@ if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
 				} // end while  dirscan	
 							
 			} // ende unzip
+		add_DBJob($mysqli, DB, $uuid, "IngestContent");
 		echo '{"success":"success"}';	
 		exit;	
 		} // end if zip
@@ -70,7 +71,7 @@ if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
 			add_DBContent($mysqli, $org_filename, $uuid, $content_type);
 			
 		}
-		
+		add_DBJob($mysqli, DB, $uuid, "IngestContent");
 		echo '{"success":"success"}';
 		exit;
 	}
