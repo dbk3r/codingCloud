@@ -39,23 +39,24 @@ function db_read_content($conn, $f_audio, $f_video, $f_blender) {
 	if ($result->num_rows > 0) {
     
 	    while($row = $result->fetch_assoc()) {
-	    	if($row["content_type"] == "Audio") { $thumbnail = "<img src='img/audio.png'>"; }
+	    	$onclick = " oncontextmenu=\"Daction(event,'" .$row["content_uuid"]."');\"" ;
+	    	if($row["content_type"] == "Audio") { $thumbnail = "<img class=Daction src='img/audio.png'>"; }
 			if($row["content_type"] == "Video") {
 					if (file_exists ( CONTENT_DIR.$row["content_uuid"]."/".$row["content_thumbnail"] )) {
-						$thumbnail = "<img src='content/".$row["content_uuid"]."/".$row["content_thumbnail"]."'>";
+						$thumbnail = "<img class=Daction src='content/".$row["content_uuid"]."/".$row["content_thumbnail"]."'>";
 					} else {
-						$thumbnail = "<img src='img/video.png'>";
+						$thumbnail = "<img class=Daction src='img/video.png'>";
 					}
 			}
 			
 	    	
-			echo "<div class=content id=".$row["content_uuid"].">\n";
+			echo "<div $onclick class=content id=".$row["content_uuid"].">\n";
 			echo "	<div class=content-a>\n";
 			echo "		<table><tr>";			
-			echo "			<td valign=middle align=left>$thumbnail</td>";
+			echo "			<td valign=top align=left>$thumbnail</td>";
 			echo "			<td valign=top align=left>";
 			echo "				<table height=100% border=0 width=100%>";
-			echo "					<tr><td colspan=2>".$row["content_description"]." - [".$row['content_filesize']."]</td></tr>";
+			echo "					<tr><td colspan=2 class=ContentDescription>".$row["content_description"]." - [".$row['content_filesize']."]</td></tr>";
 			echo "					<tr><td class=mediainfos valign=top width=200>Länge: ".$row["content_duration"]."</td>";
 			echo "						<td class=mediainfos>";
 			echo "							Größe: ".$row["content_videoDimension"]."<br>";

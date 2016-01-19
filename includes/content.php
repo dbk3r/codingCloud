@@ -24,8 +24,9 @@
 			<div class=content-head-c>Status</div>						
 		</div>	
 			
-			<?php
-				db_read_content($mysqli, $f_audio, $f_video , $f_blender);			
-			?>
+<?php
+	db_read_content($mysqli, $f_audio, $f_video , $f_blender);	
+		
+?>
 
 	

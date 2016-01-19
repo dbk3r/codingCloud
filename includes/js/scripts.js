@@ -1,4 +1,16 @@
 
+function Daction(event,uuid) {	
+		$("#cMenu").remove();
+		var cmenu = $('<div id=cMenu class=cmenu>'+uuid+'</div>');
+		$(cmenu).hide().appendTo('body').fadeIn(300);		
+		$("#cMenu").offset({left:event.clientX,top:event.clientY})	;
+		$(document).click(function() {
+			$("#cMenu").remove();
+		});
+			
+	
+}
+
 function ccAlert(text){
 	
 	var ccAlertDiv = $('<div id=ccAlertBox class=ccAlertBox><table width=100%></tr><td class=alertTH align=center>Fehler</td></tr><tr><td class=alertTD align=center>'+text+'</td></tr></table></div>', { css: { 'display': 'none' }});
@@ -32,26 +44,24 @@ function dbAction(wf, uuid) {
 
 function contentReload(){		
 	
+			
+	
 		if($("#audio-filter").is(':checked')) {	var af = "f_audio=on"; } else { af=""; }
 		if($("#video-filter").is(':checked')) { var av = "&f_video=on"; } else { av=""; }
 		if($("#blender-filter").is(':checked')) {	var ab = "&f_blender=on"; } else { ab=""; }
 		
-		$("#tbl-content").load('includes/content.php?'+af+av+ab,function() {
-			$(".content").mouseover(function() {
-				
-			});
-		
-			$(".content").click(function() {
-				
-			});			
+		$("#tbl-content").load('includes/content.php?'+af+av+ab,function() {	
 			
-		
+			
 				
 		}); // end content reload
     
 	};	
 	
 $(document).ready( function() {			
+ 	
+ 	
+ 	
  	
  	$(".search-cb").click(function() {
 		contentReload();
