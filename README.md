@@ -34,6 +34,6 @@ Demo Coming soon.
 - Admin Panel
 - User Settings
 - Search Results
-- Filter Results
+- ~~Filter Results~~
 - Content-Proberty-Panel
 - Perl-Backend Adaptions
