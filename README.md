@@ -33,7 +33,7 @@ Demo Coming soon.
 - Login, Logout, Register
 - Admin Panel
 - User Settings
-- ~~Search Results~~
-- Filter Results
+- Search Results
+- ~~Filter Results~~
 - Content-Proberty-Panel
 - Perl-Backend Adaptions
