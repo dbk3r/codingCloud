@@ -1,7 +1,17 @@
 
 function Daction(event,uuid) {	
 		$("#cMenu").remove();
-		var cmenu = $('<div id=cMenu class=cmenu>'+uuid+'</div>');
+		var cmenu = $(
+			'<div id=cMenu class=cmenu>'+
+				'<table>'+
+				'	<tr><td>Menü</td>'+
+				'	<tr><td>medainfos</td>'+
+				'	<tr><td>convert to</td>'+
+				'	<tr><td>löschen</td>'+
+				'</tr></table>'+
+			'</div>'
+			
+			);
 		$(cmenu).hide().appendTo('body').fadeIn(300);		
 		$("#cMenu").offset({left:event.clientX,top:event.clientY})	;
 		$(document).click(function() {
