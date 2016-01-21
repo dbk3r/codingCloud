@@ -3,7 +3,7 @@
 	include_once 'includes/config.php';
 	
 	$mysqladmin = "root";
-	$mysqladmin_password = "nulleins";
+	$mysqladmin_password = "DPSadm1n";
 	
 	$CC_table_prefix = TABLE_PREPIX;
 	

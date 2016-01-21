@@ -1,19 +1,26 @@
 
-function Daction(event,uuid) {	
+function wfAction(event,uuid) {	
+		
 		$("#cMenu").remove();
-		var cmenu = $(
-			'<div id=cMenu class=cmenu>'+
-				'<table>'+
-				'	<tr><td>Menü</td>'+
-				'	<tr><td>medainfos</td>'+
-				'	<tr><td>convert to</td>'+
-				'	<tr><td>löschen</td>'+
-				'</tr></table>'+
-			'</div>'
-			
-			);
-		$(cmenu).hide().appendTo('body').fadeIn(300);		
-		$("#cMenu").offset({left:event.clientX,top:event.clientY})	;
+		var wf="";
+		$.getJSON("includes/db_action.php?getWF='a'", function(data) {
+		        wf = "<table>";
+				
+				$.each(data.workflow, function(i,workflow){									
+					wf = wf + "<tr class=menucontent><td><img src="+workflow.wf_icon+"></td><td>"+workflow.wf_description+"</td></tr>" ;				
+				});
+				wf = wf + "</table>"; 
+				var cmenu = $(
+					'<div id=cMenu class=cmenu>'+
+						wf +				
+					'</div>'
+				
+				);
+				$(cmenu).hide().appendTo('body').fadeIn(300);		
+				$("#cMenu").offset({left:event.clientX,top:event.clientY})	;
+				
+		});
+		
 		$(document).click(function() {
 			$("#cMenu").remove();
 		});

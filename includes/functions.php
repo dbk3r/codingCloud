@@ -39,7 +39,7 @@ function db_read_content($conn, $f_audio, $f_video, $f_blender) {
 	if ($result->num_rows > 0) {
     
 	    while($row = $result->fetch_assoc()) {
-	    	$onclick = " oncontextmenu=\"Daction(event,'" .$row["content_uuid"]."');\"" ;
+	    	$onclick = " oncontextmenu=\"wfAction(event,'" .$row["content_uuid"]."');\"" ;
 	    	if($row["content_type"] == "Audio") { $thumbnail = "<img class=Daction src='img/audio.png'>"; }
 			if($row["content_type"] == "Video") {
 					if (file_exists ( CONTENT_DIR.$row["content_uuid"]."/".$row["content_thumbnail"] )) {
@@ -47,17 +47,16 @@ function db_read_content($conn, $f_audio, $f_video, $f_blender) {
 					} else {
 						$thumbnail = "<img class=Daction src='img/video.png'>";
 					}
-			}
-			
+			}			
 	    	
 			echo "<div $onclick class=content id=".$row["content_uuid"].">\n";
 			echo "	<div class=content-a>\n";
-			echo "		<table><tr>";			
+			echo "		<table border=0 cellspacing=0 cellpadding=0><tr>";			
 			echo "			<td valign=top align=left>$thumbnail</td>";
 			echo "			<td valign=top align=left>";
 			echo "				<table height=100% border=0 width=100%>";
 			echo "					<tr><td colspan=2 class=ContentDescription>".$row["content_description"]." - [".$row['content_filesize']."]</td></tr>";
-			echo "					<tr><td class=mediainfos valign=top width=200>Länge: ".$row["content_duration"]."</td>";
+			echo "					<tr><td class=mediainfos valign=top>Länge: ".$row["content_duration"]."</td>";
 			echo "						<td class=mediainfos>";
 			echo "							Größe: ".$row["content_videoDimension"]."<br>";
 			echo "							Video-Codec: ".$row["content_videoCodec"]. " | ". $row["content_videoBitrate"]."<br>";
@@ -65,19 +64,9 @@ function db_read_content($conn, $f_audio, $f_video, $f_blender) {
 			echo "						</td></tr>";
 			echo "				</table>";
 			echo "		<tr></table>";	
-			echo "	</div>\n";		
-			echo "	<div class=content-b>\n";
-			// read Workflows
-			$sql2 = "SELECT * from cc_wf";
-			$workflows = $conn->query($sql2);
-			if ($workflows->num_rows > 0) {    
-	    		while($row2 = $workflows->fetch_assoc()) {
-	    			echo "<img class=". $row2["wf_short"] . " id=". $row["content_uuid"] ." title='". $row2["wf_description"] ."' src=".$row2["wf_icon"] . " onClick=\"dbAction('" .$row2["wf_short"]."','".$row["content_uuid"]."');\"> ";
-				}
-			}
-			echo "	</div>\n";
-			echo "	<div class=content-c>".$row["content_state"]."</div>\n";
-			echo "</div>\n";			        
+			echo "	</div>\n";	
+			echo "</div>\n";	
+			      
 	    }
 		echo "<div class=content-head></div>";	
 	} else {
