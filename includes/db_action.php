@@ -7,7 +7,7 @@
 	if($_GET['getWF']) {
 		
 		// read Workflows
-			$sql2 = "SELECT wf_description,wf_short,wf_icon from cc_wf";
+			$sql2 = "SELECT wf_description,wf_short,wf_icon from cc_wf order by id DESC";
 			$workflows = $mysqli->query($sql2);
 			if ($workflows->num_rows > 0) {    
 	    		while($obj = mysqli_fetch_object($workflows)) {

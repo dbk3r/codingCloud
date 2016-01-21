@@ -123,9 +123,9 @@
 	    echo "Error creating $table: " . $conn->error . "\n";
 	}
 	// insert Workflows
-	$sql = "INSERT INTO `$db`.`$table` (wf_description, wf_short, wf_pids ,wf_icon) VALUES ('delete Content','delContent', 'delContentDB,delContent', 'img/trash.png');";
+	$sql = "INSERT INTO `$db`.`$table` (wf_description, wf_short, wf_pids ,wf_icon) VALUES ('delete Content','delContent', 'delContentDB,delContent', 'img/delete.png');";
 	$conn->query($sql);
-	$sql = "INSERT INTO `$db`.`$table` (wf_description, wf_short, wf_pids ,wf_icon) VALUES ('Ingest Content','IngestContent', 'mediainfo,genThumbnail', 'img/ingest.png');";
+	$sql = "INSERT INTO `$db`.`$table` (wf_description, wf_short, wf_pids ,wf_icon) VALUES ('Ingest Content','IngestContent', 'mediainfo,genThumbnail', 'img/mediainfo.png');";
 	$conn->query($sql);
 	
 	// add table process
