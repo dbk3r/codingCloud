@@ -9,6 +9,7 @@
 <div id="jq-menu-admin" class="jq-dropdown jq-dropdown-tip">
     <ul class="jq-dropdown-menu">
         <li><a href="admin.php?show=wf">Workflows bearbeiten</a></li>
-        <li><a href="admin.php?show=p">Prozesse bearbeiten</a></li>        
+        <li><a href="admin.php?show=p">Prozesse bearbeiten</a></li>  
+        <li><a href="admin.php?show=m">Coder Monitoring</a></li>        
     </ul>
 </div>

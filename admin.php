@@ -18,7 +18,7 @@
 		
 		<div id-settings-content class=tbl-content>
 			
-			<div class=float-right><a id=save-<?php echo $_GET['show'] ;?> href=index.php class=settings-btn>speichern</a></div>
+			<div class=float-right><a id=save-<?php echo $_GET['show'] ;?> href=index.php class=settings-btn>Zur&uuml;ck</a></div>
 		</div>
 		
 	</div>
