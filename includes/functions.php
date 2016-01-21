@@ -51,13 +51,13 @@ function db_read_content($conn, $f_audio, $f_video, $f_blender) {
 	    	
 			echo "<div $onclick class=content id=".$row["content_uuid"].">\n";
 			echo "	<div class=content-a>\n";
-			echo "		<table border=0 cellspacing=0 cellpadding=0><tr>";			
-			echo "			<td valign=top align=left>$thumbnail</td>";
+			echo "		<table border=0 width=100%cellspacing=0 cellpadding=0><tr>";			
+			echo "			<td valign=top align=left width=110>$thumbnail</td>";
 			echo "			<td valign=top align=left>";
 			echo "				<table height=100% border=0 width=100%>";
 			echo "					<tr><td colspan=2 class=ContentDescription>".$row["content_description"]." - [".$row['content_filesize']."]</td></tr>";
-			echo "					<tr><td class=mediainfos valign=top>Länge: ".$row["content_duration"]."</td>";
-			echo "						<td class=mediainfos>";
+			echo "					<tr><td width=50% class=mediainfos valign=top>Länge: ".$row["content_duration"]."</td>";
+			echo "						<td class=mediainfos width=50%>";
 			echo "							Größe: ".$row["content_videoDimension"]."<br>";
 			echo "							Video-Codec: ".$row["content_videoCodec"]. " | ". $row["content_videoBitrate"]."<br>";
 			echo "							Audio-Codec: ".$row["content_audioCodec"]. " | ". $row["content_audioChannel"]. " | ". $row["content_audioSamplingrate"];

@@ -4,10 +4,11 @@ function wfAction(event,uuid) {
 		$("#cMenu").remove();
 		var wf="";
 		$.getJSON("includes/db_action.php?getWF='a'", function(data) {
-		        wf = "<table>";
+		        wf = "<table border=0 cellpadding=4 cellspacing=0>";
 				
-				$.each(data.workflow, function(i,workflow){									
-					wf = wf + "<tr class=menucontent><td><img src="+workflow.wf_icon+"></td><td>"+workflow.wf_description+"</td></tr>" ;				
+				$.each(data.workflow, function(i,workflow){	
+					var action = "onClick=\"dbAction('"+workflow.wf_short+"','"+uuid+"')\";";													
+					wf = wf + "<tr " + action +" class=menutr><td><img src="+workflow.wf_icon+"></td><td>"+workflow.wf_description+"</td></tr>" ;				
 				});
 				wf = wf + "</table>"; 
 				var cmenu = $(

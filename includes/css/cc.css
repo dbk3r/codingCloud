@@ -3,9 +3,7 @@
   background-color: #ffffff;
   width: 75%;
   height: auto;
-  position:absolute;
-  
-	
+  position:absolute;	
 }
 
 
@@ -35,14 +33,14 @@ body {
 	background-color: #eeeeee;	
 	height: 100px;
 	opacity: 0.7;
-	margin-bottom:2px;	
+	margin-bottom:1px;	
 }
 .content-red{
 		
 	background-color: #ff4444;	
 }
 .content .content-a {	
-	margin-top:10px;
+	margin-top:5px;
 	margin-left:4px;
 	width: auto;	
 	height: auto;
@@ -115,15 +113,21 @@ td {
 	top:5000px;
 	border: 1px solid #111111;
 }
+.menutr:hover{
+	background-color: #eeeeee;	
+}
+.menutr{
+	background-color: #cccccc;	
+}
 
 .tbl-content {
 	background-color:#373a3d;
 	width: auto;
 	height: auto;
 	margin-left:10px;
-	margin-top:10px;
+	margin-top:3px;
 	margin-right:10px;
-	margin-bottom:10px;
+	margin-bottom:3px;
 }
 
 .search {
