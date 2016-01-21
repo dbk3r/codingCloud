@@ -52,7 +52,7 @@ function db_read_content($conn, $f_audio, $f_video, $f_blender) {
 			echo "<div $onclick class=content id=".$row["content_uuid"].">\n";
 			echo "	<div class=content-a>\n";
 			echo "		<table border=0 width=100%cellspacing=0 cellpadding=0><tr>";			
-			echo "			<td valign=top align=left width=110>$thumbnail</td>";
+			echo "			<td valign=middle align=left width=110>$thumbnail</td>";
 			echo "			<td valign=top align=left>";
 			echo "				<table height=100% border=0 width=100%>";
 			echo "					<tr><td colspan=2 class=ContentDescription>".$row["content_description"]." - [".$row['content_filesize']."]</td></tr>";

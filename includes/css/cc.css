@@ -44,6 +44,8 @@ body {
 	margin-left:4px;
 	width: auto;	
 	height: auto;
+	word-break:break-all;
+	word-wrap:break-word;
 	
 }
 
