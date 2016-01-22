@@ -4,7 +4,7 @@
 	include_once 'functions.php';
 	include_once 'db_connect.php';
 
-	if($_GET['getWF']) {
+	if(isset($_GET['getWF'])) {
 		
 		// read Workflows
 			$sql2 = "SELECT wf_description,wf_short,wf_icon from cc_wf order by id DESC";
@@ -18,7 +18,7 @@
 			}
 	}
 
-	if($_POST['wf']) {
+	if(isset($_POST['wf'])) {
 			
 		add_DBJob($mysqli, DB, $_POST['uuid'], $_POST['wf']);	
 		sleep (5);	

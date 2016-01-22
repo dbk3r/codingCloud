@@ -159,14 +159,9 @@
 	$sql = "CREATE TABLE IF NOT EXISTS `$db`.`$table` (
 	    	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	        `encoder_used_slots` INT(2),
-			`encoder_max_slots` INT(2),
-			`encoder_ffmpeg` TINYINT(1),
-			`encoder_ffmbc` TINYINT(1),
-			`encoder_blender` TINYINT(1),
-			`encoder_bmxtranswrap` TINYINT(1),
-			`encoder_mediainfo` TINYINT(1),
-			`encoder_curl` TINYINT(1),
+			`encoder_max_slots` INT(2),			
 			`encoder_cpus` INT(2),
+			`encoder_instance` VARCHAR(25),
 			`encoder_ip` VARCHAR(25) );
 	        ";
 	if ($conn->query($sql) === TRUE) {

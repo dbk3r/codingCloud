@@ -117,6 +117,7 @@ td {
 }
 .menutr:hover{
 	background-color: #eeeeee;	
+	cursor: pointer;
 }
 .menutr{
 	background-color: #cccccc;	

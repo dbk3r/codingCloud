@@ -20,18 +20,14 @@ function getContentType($ext) {
 
 function db_read_content($conn, $f_audio, $f_video, $f_blender) {
 	
-	$arr_filter = array(""); $fall="";$k="";
+	$arr_filter = array(); $fall="";$k="";
 	if($f_audio == "on") {array_push($arr_filter,'\'Audio\'');}
 	if($f_video == "on") {array_push($arr_filter,'\'Video\'');} 
 	if($f_blender == "on") {array_push($arr_filter,'\'Blender\'');} 	
-	if(count($arr_filter)>=1) {$k=",";} else {$k="";}
-	foreach($arr_filter as $f) {
-		if(count($arr_filter)>1) {$k=",";} else {$k="";}
-		$fall =  $fall.$k.$f;
-	}
+	$fi = join(',',  $arr_filter);  	
 	
-	$filter = "content_type IN (" .substr($fall, 2). ")";
-	write_log("SELECT * from cc_content WHERE $filter ORDER BY id DESC");
+	$filter = "content_type IN (" .$fi. ")";
+	#write_log("SELECT * from cc_content WHERE $filter ORDER BY id DESC");
 	
 	$sql = "SELECT * from cc_content WHERE $filter ORDER BY id DESC";
 	$result = $conn->query($sql);
@@ -97,8 +93,15 @@ function add_DBJob($mysqli, $db, $uuid, $wf) {
 				$processes = $mysqli->query($sql2);
 			    
 	    		while($pidRow = $processes->fetch_assoc()) {
+	    			if($pidRow["process_type"] == "genThumbnail" && $content_type == "Audio")
+					{
+						
+					}
+					else
+					{
 	    			$sql3 = "INSERT INTO `$db`.`cc_jobs` (uuid, job_type,state,content_type,src_filename) VALUES ('".$uuid."','".$pidRow["process_type"]."','0','".$content_type."','".$src_filename."');";
 					$mysqli->query($sql3);
+					}
 				}
 			
 			}
