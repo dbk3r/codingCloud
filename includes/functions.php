@@ -99,8 +99,8 @@ function add_DBJob($mysqli, $db, $uuid, $wf) {
 					}
 					else
 					{
-	    			$sql3 = "INSERT INTO `$db`.`cc_jobs` (uuid, job_type,state,content_type,src_filename) VALUES ('".$uuid."','".$pidRow["process_type"]."','0','".$content_type."','".$src_filename."');";
-					$mysqli->query($sql3);
+	    				$sql3 = "INSERT INTO `$db`.`cc_jobs` (uuid, job_type,state,content_type,src_filename) VALUES ('".$uuid."','".$pidRow["process_type"]."','0','".$content_type."','".$src_filename."');";
+						$mysqli->query($sql3);
 					}
 				}
 			
