@@ -3,7 +3,7 @@
 	include_once 'includes/config.php';
 	
 	$mysqladmin = "root";
-	$mysqladmin_password = "DPSadm1n";
+	$mysqladmin_password = "nulleins";
 	
 	$CC_table_prefix = TABLE_PREPIX;
 	
@@ -123,7 +123,7 @@
 	    echo "Error creating $table: " . $conn->error . "\n";
 	}
 	// insert Workflows
-	$sql = "INSERT INTO `$db`.`$table` (wf_description, wf_short, wf_pids ,wf_icon) VALUES ('delete Content','delContent', 'delContentDB,delContent', 'img/delete.png');";
+	$sql = "INSERT INTO `$db`.`$table` (wf_description, wf_short, wf_pids ,wf_icon) VALUES ('delete Content','delContent', 'delDBContent,delFileContent', 'img/delete.png');";
 	$conn->query($sql);
 	$sql = "INSERT INTO `$db`.`$table` (wf_description, wf_short, wf_pids ,wf_icon) VALUES ('Ingest Content','IngestContent', 'mediainfo,genThumbnail', 'img/mediainfo.png');";
 	$conn->query($sql);
@@ -134,7 +134,9 @@
 	$sql = "CREATE TABLE IF NOT EXISTS `$db`.`$table` (
 	    	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	        `process_description` VARCHAR(255),
-			`process_type` VARCHAR(255),			
+	        `process_shortName` VARCHAR(255),
+			`process_type` VARCHAR(255),
+			`process_essential` VARCHAR(255),			
 			`process_cmd` VARCHAR(1024),
 			`process_state` TINYINT(1) );
 	        ";
@@ -144,15 +146,16 @@
 	    echo "Error creating $table: " . $conn->error . "\n";
 	}
 	
-	$sql = "INSERT INTO `$db`.`$table` (process_description, process_type) VALUES ('delete File Content','delContent');";
+	$sql = "INSERT INTO `$db`.`$table` (process_description, process_type,process_shortName) VALUES ('delete File Content','delete','delFileContent');";
 	$conn->query($sql);	
-	$sql = "INSERT INTO `$db`.`$table` (process_description, process_type) VALUES ('delete Content DB ','delContentDB');";
+	$sql = "INSERT INTO `$db`.`$table` (process_description, process_type,process_shortName) VALUES ('delete DB Content','delete','delDBContent');";
 	$conn->query($sql);	
-	$sql = "INSERT INTO `$db`.`$table` (process_description, process_type) VALUES ('get Content Infos ','mediainfo');";	
+	$sql = "INSERT INTO `$db`.`$table` (process_description, process_type,process_essential,process_shortName) VALUES ('get Content Infos ','mediainfo','mediainfo','mediainfo');";	
 	$conn->query($sql);	
-	$sql = "INSERT INTO `$db`.`$table` (process_description, process_type) VALUES ('get Thumbnail ','genThumbnail');";	
+	$sql = "INSERT INTO `$db`.`$table` (process_description, process_type,process_essential,process_shortName,process_cmd) VALUES ('generate Thumbnail ','genThumbnail','ffmpeg','genThumbnail',' -vframes 1 -s 106x60 ');";	
 	$conn->query($sql);	
-	
+	$sql = "INSERT INTO `$db`.`$table` (process_description, process_type,process_essential,process_shortName,process_cmd) VALUES ('transcode AVCINtra ','transcode','ffmbc','transAVCIntra',' -target avcintra100 ');";	
+	$conn->query($sql);
 	// add table encoder
 	$table = $CC_table_prefix."encoder";
 	$db = DB;
@@ -180,8 +183,8 @@
 	        `dest_filename` VARCHAR(512),
 	        `content_type` VARCHAR(255),
 	        `job_type` VARCHAR(255),
-	        `coder_bin` VARCHAR(255),
-	        `cmd` VARCHAR(1024),
+	        `job_essential` VARCHAR(255),
+	        `job_cmd` VARCHAR(1024),
 	        `progress` INT(3),	        
 	        `state` INT(1),
 	        `encoder_id` INT(11),

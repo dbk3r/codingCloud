@@ -89,7 +89,7 @@ function add_DBJob($mysqli, $db, $uuid, $wf) {
 			
 			foreach($pids as $pid) {
 				write_log($pid);
-			    $sql2 = "SELECT * from cc_process where process_type='".$pid."'";
+			    $sql2 = "SELECT * from cc_process where process_shortName='".$pid."'";
 				$processes = $mysqli->query($sql2);
 			    
 	    		while($pidRow = $processes->fetch_assoc()) {
@@ -99,7 +99,17 @@ function add_DBJob($mysqli, $db, $uuid, $wf) {
 					}
 					else
 					{
-	    				$sql3 = "INSERT INTO `$db`.`cc_jobs` (uuid, job_type,state,content_type,src_filename) VALUES ('".$uuid."','".$pidRow["process_type"]."','0','".$content_type."','".$src_filename."');";
+	    				$sql3 = "INSERT INTO `$db`.`cc_jobs` (uuid, job_type,job_essential,state,job_cmd,content_type,dest_filename,src_filename) VALUES (
+	    									'".$uuid."',
+	    									'".$pidRow["process_type"]."',
+	    									'".$pidRow["process_essential"]."',
+	    									'0',
+	    									'".$pidRow["process_cmd"]."',
+	    									'".$content_type."',
+	    									'".$src_filename.".png',
+	    									'".$src_filename."'
+	    									);";
+											
 						$mysqli->query($sql3);
 					}
 				}
