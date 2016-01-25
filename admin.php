@@ -9,16 +9,24 @@
 			if($_GET['show'] == "wf")
 			{
 				echo "ADD/EDIT Workflows";
+				$btn = "speichern";
 			}
 			if($_GET['show'] == "p")
 			{
 				echo "ADD/EDIT Processes";
+				$btn = "speichern";
 			}
+			if($_GET['show'] == "m")
+			{
+				echo "Coder/Worker Monitor";
+				$btn = "zur&uuml;ck";
+			}
+			
 		?>
 		
 		<div id-settings-content class=tbl-content>
 			
-			<div class=float-right><a id=save-<?php echo $_GET['show'] ;?> href=index.php class=settings-btn>Zur&uuml;ck</a></div>
+			<div class=float-right><a id=save-<?php echo $_GET['show'] ;?> href=index.php class=settings-btn><?php echo $btn; ?></a></div>
 		</div>
 		
 	</div>
