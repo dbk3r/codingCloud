@@ -1,9 +1,8 @@
 <?php
 
 	include_once 'includes/config.php';
+	include_once 'credentials.php';
 	
-	$mysqladmin = "root";
-	$mysqladmin_password = "nulleins";
 	
 	$CC_table_prefix = TABLE_PREPIX;
 	
