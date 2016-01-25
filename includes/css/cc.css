@@ -243,3 +243,8 @@ a:visited { color:#fff; }
 .settings-btn:hover {
 	background-color:#0986a3;
 }
+.thumbnail {
+	width:106px;
+	height:auto;
+	-o-object-fit: contain;
+}

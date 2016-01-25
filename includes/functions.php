@@ -36,12 +36,12 @@ function db_read_content($conn, $f_audio, $f_video, $f_blender) {
     
 	    while($row = $result->fetch_assoc()) {
 	    	$onclick = " oncontextmenu=\"wfAction(event,'" .$row["content_uuid"]."');\"" ;
-	    	if($row["content_type"] == "Audio") { $thumbnail = "<img class=Daction src='img/audio.png'>"; }
-			if($row["content_type"] == "Video") {
+	    	if($row["content_type"] == "Audio") { $thumbnail = "<img class=thumbnail src='img/audio.png'>"; }
+			if($row["content_type"] == "Video" || $row["content_type"] == "blender") {
 					if (file_exists ( CONTENT_DIR.$row["content_uuid"]."/".$row["content_thumbnail"] )) {
-						$thumbnail = "<img class=Daction src='content/".$row["content_uuid"]."/".$row["content_thumbnail"]."'>";
+						$thumbnail = "<img class=thumbnail src='content/".$row["content_uuid"]."/".$row["content_thumbnail"]."'>";
 					} else {
-						$thumbnail = "<img class=Daction src='img/video.png'>";
+						$thumbnail = "<img class=thumbnail src='img/video.png'>";
 					}
 			}			
 	    	
@@ -95,14 +95,25 @@ function add_DBJob($mysqli, $db, $uuid, $wf) {
 	    		while($pidRow = $processes->fetch_assoc()) {
 	    			if($pidRow["process_type"] == "genThumbnail" && $content_type == "Audio")
 					{
-						
+						continue;
+					}
+					if($pidRow["process_type"] == "mediainfo" && $content_type == "blender")
+					{
+						continue;
+					}
+					if($pidRow["process_type"] == "genThumbnail" && $content_type == "blender")
+					{
+						$essential_bin = "blender";
 					}
 					else
 					{
+						$essential_bin = $pidRow["process_essential"];
+					}
+					
 	    				$sql3 = "INSERT INTO `$db`.`cc_jobs` (uuid, job_type,job_essential,state,job_cmd,content_type,dest_filename,src_filename) VALUES (
 	    									'".$uuid."',
 	    									'".$pidRow["process_type"]."',
-	    									'".$pidRow["process_essential"]."',
+	    									'".$essential_bin."',
 	    									'0',
 	    									'".$pidRow["process_cmd"]."',
 	    									'".$content_type."',
@@ -110,8 +121,7 @@ function add_DBJob($mysqli, $db, $uuid, $wf) {
 	    									'".$src_filename."'
 	    									);";
 											
-						$mysqli->query($sql3);
-					}
+						$mysqli->query($sql3);					
 				}
 			
 			}

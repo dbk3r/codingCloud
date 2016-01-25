@@ -145,9 +145,9 @@
 	    echo "Error creating $table: " . $conn->error . "\n";
 	}
 	
-	$sql = "INSERT INTO `$db`.`$table` (process_description, process_type,process_shortName) VALUES ('delete File Content','delete','delFileContent');";
+	$sql = "INSERT INTO `$db`.`$table` (process_description, process_type,process_shortName,process_essential) VALUES ('delete File Content','delete','delFileContent','delete');";
 	$conn->query($sql);	
-	$sql = "INSERT INTO `$db`.`$table` (process_description, process_type,process_shortName) VALUES ('delete DB Content','delete','delDBContent');";
+	$sql = "INSERT INTO `$db`.`$table` (process_description, process_type,process_shortName,process_essential) VALUES ('delete DB Content','delete','delDBContent','delete');";
 	$conn->query($sql);	
 	$sql = "INSERT INTO `$db`.`$table` (process_description, process_type,process_essential,process_shortName) VALUES ('get Content Infos ','mediainfo','mediainfo','mediainfo');";	
 	$conn->query($sql);	

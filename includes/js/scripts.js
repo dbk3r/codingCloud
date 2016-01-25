@@ -18,7 +18,7 @@ function wfAction(event,uuid) {
 				
 				);
 				$(cmenu).hide().appendTo('body').fadeIn(300);		
-				$("#cMenu").offset({left:event.clientX,top:event.clientY})	;
+				$("#cMenu").offset({left:event.pageX,top:event.pageY})	;
 				
 		});
 		
@@ -61,7 +61,6 @@ function dbAction(wf, uuid) {
 }
 
 function contentReload(){		
-	
 			
 	
 		if($("#audio-filter").is(':checked')) {	var af = "f_audio=on"; } else { af=""; }

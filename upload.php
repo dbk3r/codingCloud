@@ -40,11 +40,11 @@ if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
 						
 						
 						if($f_ext == "blend") {
-							// add blendfile to Database
-							add_DBContent($mysqli, $filename, $uuid, "Blender");	
+							// add blendfile to Database							
+							add_DBContent($mysqli, $filename, $uuid, "blender");	
 						} else {
 							if(in_array(strtolower($f_ext), $allowed)){
-								// add file to Database									
+								// add file to Database													
 								add_DBContent($mysqli, $filename, $uuid, $content_type);						
 							} else {
 								// delete file								
@@ -63,11 +63,11 @@ if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
 		rename($upload_dir.$org_filename, $content_dir.$uuid."/".$org_filename);
 		if ($extension == "blend") {
 			# add blend-file to Database
-			add_DBContent($mysqli, $org_filename, $uuid, "Blender");
+			add_DBContent($mysqli, $org_filename, $uuid, "blender");			
 		}
 		else {
 			# add uploaded File to Database
-			$content_type = getContentType($extension);			
+			$content_type = getContentType($extension);					
 			add_DBContent($mysqli, $org_filename, $uuid, $content_type);
 			
 		}
