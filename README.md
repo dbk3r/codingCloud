@@ -32,8 +32,12 @@ Demo Coming soon.
 
 - Login, Logout, Register
 - Admin Panel
+- - Workflow editor
+-- Process Editor
+- - Monitoring
 - User Settings
 - ~~Search Results~~
 - ~~Filter Results~~
 - Content-Proberty-Panel
+- Content based Job-Overview
 - Perl-Backend Adaptions
