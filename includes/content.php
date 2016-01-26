@@ -7,12 +7,14 @@
 		$f_audio = $_GET['f_audio']; 
 		$f_video = $_GET['f_video'];
 		$f_blender = $_GET['f_blender'];
+		$searchtext = $_GET['search'];
 	}
 	else
 	{
 		$f_audio = ""; 
 		$f_video = "";
 		$f_blender = "";
+		$searchtext = "";
 	}
 	
 	
@@ -23,7 +25,7 @@
 		</div>	
 			
 <?php
-	db_read_content($mysqli, $f_audio, $f_video , $f_blender);	
+	db_read_content($mysqli, $f_audio, $f_video , $f_blender, $searchtext);	
 		
 ?>
 

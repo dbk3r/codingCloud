@@ -18,15 +18,15 @@ function getContentType($ext) {
 	return $ret;
 }	
 
-function db_read_content($conn, $f_audio, $f_video, $f_blender) {
+function db_read_content($conn, $f_audio, $f_video, $f_blender, $searchtext) {
 	
 	$arr_filter = array(); $fall="";$k="";
 	if($f_audio == "on") {array_push($arr_filter,'\'Audio\'');}
 	if($f_video == "on") {array_push($arr_filter,'\'Video\'');} 
 	if($f_blender == "on") {array_push($arr_filter,'\'Blender\'');} 	
 	$fi = join(',',  $arr_filter);  	
-	
-	$filter = "content_type IN (" .$fi. ")";
+	if($searchtext != "") {$search_filter = " AND content_description LIKE '%".$searchtext."%'";} else {$search_filter="";}
+	$filter = "content_type IN (" .$fi. ")".$search_filter;
 	#write_log("SELECT * from cc_content WHERE $filter ORDER BY id DESC");
 	
 	$sql = "SELECT * from cc_content WHERE $filter ORDER BY id DESC";
