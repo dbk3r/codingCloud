@@ -38,6 +38,6 @@ Demo Coming soon.
 - User Settings
 - ~~Search Results~~
 - ~~Filter Results~~
-- Content-Proberty-Panel
+- ~~Content-Proberty-Panel~~
 - Content based Job-Overview
 - Perl-Backend Adaptions
