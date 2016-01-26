@@ -32,9 +32,9 @@ Demo Coming soon.
 
 - Login, Logout, Register
 - Admin Panel
-- - Workflow editor
+-- Workflow editor
 -- Process Editor
-- - Monitoring
+-- Monitoring
 - User Settings
 - ~~Search Results~~
 - ~~Filter Results~~
