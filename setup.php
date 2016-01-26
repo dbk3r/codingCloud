@@ -94,6 +94,9 @@
 			`content_audioCodec` VARCHAR(50),
 			`content_audioChannel` VARCHAR(50),
 			`content_audioSamplingrate` VARCHAR(50),
+			`content_sceneName` VARCHAR(255),
+			`content_startFrame` INT(11),
+			`content_endFrame` INT(11),
 			`content_type` VARCHAR(50),	
 			`content_state` VARCHAR(50),	
 			`content_uuid` VARCHAR(255) );

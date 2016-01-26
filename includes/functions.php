@@ -52,12 +52,20 @@ function db_read_content($conn, $f_audio, $f_video, $f_blender) {
 			echo "			<td valign=top align=left>";
 			echo "				<table height=100% border=0 width=100%>";
 			echo "					<tr><td colspan=2 class=ContentDescription>".$row["content_description"]." - [".$row['content_filesize']."]</td></tr>";
-			echo "					<tr><td width=50% class=mediainfos valign=top>Länge: ".$row["content_duration"]."</td>";
-			echo "						<td class=mediainfos width=50%>";
-			echo "							Größe: ".$row["content_videoDimension"]."<br>";
-			echo "							Video-Codec: ".$row["content_videoCodec"]. " | ". $row["content_videoBitrate"]."<br>";
-			echo "							Audio-Codec: ".$row["content_audioCodec"]. " | ". $row["content_audioChannel"]. " | ". $row["content_audioSamplingrate"];
-			echo "						</td></tr>";
+			if($row["content_type"] == "blender") {
+				echo "					<tr><td width=50% class=mediainfos valign=top>Scene Name: ".$row["content_sceneName"]."</td>";
+				echo "						<td class=mediainfos width=50%>";
+				echo "							Start Frame: ".$row["content_startFrame"]."<br>";
+				echo "							End Frame: ".$row["content_endFrame"];				
+				echo "						</td></tr>";
+			} else {
+				echo "					<tr><td width=50% class=mediainfos valign=top>Länge: ".$row["content_duration"]."</td>";			
+				echo "						<td class=mediainfos width=50%>";
+				echo "							Größe: ".$row["content_videoDimension"]."<br>";
+				echo "							Video-Codec: ".$row["content_videoCodec"]. " | ". $row["content_videoBitrate"]."<br>";
+				echo "							Audio-Codec: ".$row["content_audioCodec"]. " | ". $row["content_audioChannel"]. " | ". $row["content_audioSamplingrate"];
+				echo "						</td></tr>";
+			}
 			echo "				</table>";
 			echo "		<tr></table>";	
 			echo "	</div>\n";	
@@ -99,7 +107,7 @@ function add_DBJob($mysqli, $db, $uuid, $wf) {
 					}
 					if($pidRow["process_type"] == "mediainfo" && $content_type == "blender")
 					{
-						continue;
+						$essential_bin = "blender";
 					}
 					if($pidRow["process_type"] == "genThumbnail" && $content_type == "blender")
 					{
