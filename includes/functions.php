@@ -66,7 +66,7 @@ function db_read_content($conn, $f_audio, $f_video, $f_blender, $searchtext) {
 				echo "							Audio-Codec: ".$row["content_audioCodec"]. " | ". $row["content_audioChannel"]. " | ". $row["content_audioSamplingrate"];
 				echo "						</td></tr>";
 			}
-			echo "				</table>";
+			echo "				</table></td>";
 			echo "		<tr></table>";	
 			echo "	</div>\n";	
 			echo "</div>\n";	

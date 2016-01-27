@@ -28,9 +28,10 @@
 			</div>
 		
 			
-			<div id="tbl-content" class="tbl-content">
-				<?php include 'includes/content.php';	?>	
-			</div>
+				<div id="tbl-content" class="tbl-content">
+					<?php include 'includes/content.php';	?>	
+				</div>
+			
 
 
 

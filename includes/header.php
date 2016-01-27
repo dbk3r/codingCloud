@@ -37,20 +37,10 @@
 		
     	<script type="text/javascript">
 								
-			$(window).resize(function(){
+			$(window).resize(function(){				
+							
 				
-				$('.mainDiv').css({
-					position:'absolute',
-					left: ($(window).width() - $('.mainDiv').outerWidth())/2,
-					
-					height:'auto'
-				});	
-				
-				$('.tbl-content').css({
-					height:'auto'
-				});
-				
-				contentReload();
+				contentReload();	
 				
 			});
 			
