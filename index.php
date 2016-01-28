@@ -3,7 +3,8 @@
 	include_once './includes/menu-bar.php';
 			
 ?>
-			
+		<div id="leftDiv" class="leftDiv">	
+			<div id="splitDiv" class="splitDiv"></div>
 			<div class=nav-bar id=nav-bar>
 				<table width=100%>
 					<tr>
@@ -28,11 +29,15 @@
 			</div>
 		
 			
-				<div id="tbl-content" class="tbl-content">
-					<?php include 'includes/content.php';	?>	
-				</div>
+			<div id="tbl-content" class="tbl-content">
+				<?php include 'includes/content.php';	?>	
+			</div>
+				
+		
+		</div>
 			
-
+		
+		<div id="rightDiv" class="rightDiv"></div>
 
 
 <?php

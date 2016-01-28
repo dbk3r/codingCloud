@@ -39,7 +39,7 @@
 								
 			$(window).resize(function(){				
 							
-				
+				$("#splitDiv").css("height", $("#leftDiv").height());
 				contentReload();	
 				
 			});

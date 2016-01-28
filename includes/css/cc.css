@@ -1,14 +1,16 @@
+
 .mainDiv {
   
   background-color: #ffffff;
   width: 100%;
   height: 100%;
-  position: absolute;
+  margin:10px;
+  position:absolute;  
 }
 
 
 body {
-	background-color: #eeeeee;
+	background-color: #ffffff;
 }
 
 .content:hover {	
@@ -52,7 +54,7 @@ body {
 
 
 .content-head {	
-	clear:left;
+	#clear:left;
 	font-family:verdana, sans-serif; font-weight: bold;
 	font-size:12px;
 	color:#B4B4B4;
@@ -68,16 +70,11 @@ body {
 }
 
 
-.content-iframe {
-	width: 100%;
-	height: 100%;
-	
-}
 .nav-bar {
 	background-color:#373a3d;
 	width: auto;
 	margin-left:10px;
-	margin-top:50px;
+	margin-top:5px;
 	margin-right:10px;
 	margin-bottom:10px;
 	
@@ -169,13 +166,13 @@ td {
 	
 	vertical-align: middle;
 }
-.settings {
+.menubar {
 	width:100%;
 	background-color: #ffffff;	
 	margin-top:10px;
 	height:30px;
 	margin-right: 30px;
-	position:absolute;
+	#position:absolute;
 	
 }
 .settings-profile{
@@ -210,7 +207,7 @@ td {
 }
 .settings-head{
 	background-color:#373a3d;
-	width: auto;
+	width: 100%;
 	margin-left:10px;
 	margin-top:50px;
 	margin-right:10px;
@@ -247,4 +244,27 @@ a:visited { color:#fff; }
 	width:106px;
 	height:auto;
 	-o-object-fit: contain;
+}
+.leftDiv {
+	width:65%;
+	float: left;
+	
+}
+.splitDiv {
+	
+	background-color:gray;
+    height:100%;
+    float: right;
+    width: 6px;
+    margin-top:5px;    
+    cursor: col-resize;
+	
+}
+.rightDiv {
+	
+	width:auto;
+	height:100%;
+	background-color:black;
+	margin-left: 65%;
+	margin-top: 5px;
 }
