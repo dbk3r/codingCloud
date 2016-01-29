@@ -38,6 +38,10 @@ body {
 	margin-bottom:1px;	
 	
 }
+.content-selected{
+	background-color: #EB8F00;	
+	opacity: 0.9;
+}
 .content-red{
 		
 	background-color: #ff4444;	
@@ -207,16 +211,17 @@ td {
 }
 .settings-head{
 	background-color:#373a3d;
-	width: 100%;
+	width: auto;
 	margin-left:10px;
 	margin-top:50px;
-	margin-right:10px;
+	margin-right:20px;
 	margin-bottom:10px;
 	padding:10px;
 	color:#eeeeee;
 }
 .float-right{
 	float:right;
+	#margin-right:10px;
 }
 a:link { color:#fff; }
 a:visited { color:#fff; }
@@ -264,7 +269,33 @@ a:visited { color:#fff; }
 	
 	width:auto;
 	height:100%;
-	background-color:black;
+	background-color:#373a3d;
 	margin-left: 65%;
 	margin-top: 5px;
 }
+.vPlayer {
+	
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */	
+	height: 0;
+	
+}
+.vp {
+	position: absolute;	
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.vControlls{
+	width:100%;
+	height:35px;
+	background-color: white;
+}
+.jProcess{
+	width:100%;
+	height:auto;
+	margin-top:10px;
+	background-color: white;
+}
+

@@ -1,4 +1,22 @@
 
+function cActivate(event, uuid,loresVideo) {
+	
+	$(".content").removeClass("content-selected");
+	$("#"+uuid).addClass( "content-selected", 400 );
+	$('#vPlayer video').html('<source src="'+ loresVideo +'" type="video/mp4"></source>').load();
+	var pr = "";	
+	$.getJSON("includes/readProcess.php?uuid='"+uuid+"'", function(data) {
+		        pr = "<table border=0 cellpadding=4 cellspacing=5>";
+				
+				$.each(data.ps, function(i,ps){																		
+					pr = pr + "<tr class=proc><td>"+ps.job_type+"</td></tr>" ;				
+				});
+				pr = pr + "</table>"; 
+				$("#jProcess").html(pr);
+	});
+	
+}
+
 function wfAction(event,uuid) {	
 		
 		$("#cMenu").remove();
@@ -115,12 +133,12 @@ $(document).ready( function() {
 	    if (x > min && x < max && e.pageX < ($(window).width() - mainmin)) {
 	      $('#leftDiv').css("width", x);
 	      $('#rightDiv').css("margin-left", x + 4);
-	      $("#splitDiv").css("height", $("#leftDiv").height()- 8);	
-		  $("#rightDiv").css({"height":$("#leftDiv").height()- 8, "margin-left":$("#leftDiv").width()+4});
+	      $("#splitDiv").css("height", $("#leftDiv").height()- 10);	
+		  $("#rightDiv").css({"height":$("#leftDiv").height()- 10, "margin-left":$("#leftDiv").width()+4});
 		  $("#mainDiv").css("height", "auto");
 	      
 	    }
-	  })
+	  });
 	});
 	$(document).mouseup(function(e) {
 	  $(document).unbind('mousemove');

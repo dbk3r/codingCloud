@@ -35,7 +35,8 @@ function db_read_content($conn, $f_audio, $f_video, $f_blender, $searchtext) {
 	if ($result->num_rows > 0) {
     
 	    while($row = $result->fetch_assoc()) {
-	    	$onclick = " oncontextmenu=\"wfAction(event,'" .$row["content_uuid"]."');\"" ;
+	    	$onRightclick = " oncontextmenu=\"wfAction(event,'" .$row["content_uuid"]."');\"" ;
+			$onClick = " onclick=\"cActivate(event,'" .$row["content_uuid"]."','test.mp4');\"" ;
 	    	if($row["content_type"] == "Audio") { $thumbnail = "<img class=thumbnail src='img/audio.png'>"; }
 			if($row["content_type"] == "Video" || $row["content_type"] == "blender") {
 					if (file_exists ( CONTENT_DIR.$row["content_uuid"]."/".$row["content_thumbnail"] )) {
@@ -45,7 +46,7 @@ function db_read_content($conn, $f_audio, $f_video, $f_blender, $searchtext) {
 					}
 			}			
 	    	
-			echo "<div $onclick class=content id=".$row["content_uuid"].">\n";
+			echo "<div $onRightclick $onClick class=content id=".$row["content_uuid"].">\n";
 			echo "	<div class=content-a>\n";
 			echo "		<table border=0 width=100%cellspacing=0 cellpadding=0><tr>";			
 			echo "			<td valign=middle align=left width=110>$thumbnail</td>";

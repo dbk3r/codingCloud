@@ -32,7 +32,7 @@
 		?>
 			
 			
-			<div id=save class="settings-btn float-right">speichern</div>
+			<div id=save class="float-right"><a id=save-<?php echo $_GET['show'] ;?> href=index.php class=settings-btn>speichern</a></div>
 		</div>
 		
 	</div>

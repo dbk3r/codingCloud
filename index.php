@@ -37,7 +37,11 @@
 		</div>
 			
 		
-		<div id="rightDiv" class="rightDiv"></div>
+		<div id="rightDiv" class="rightDiv">
+			<div id=vPlayer class=vPlayer><video controls class="vp"></video></div>
+			<div id=vControls class=vControlls></div>
+			<div id=jProcess class=jProcess></div>
+		</div>
 
 
 <?php
