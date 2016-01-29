@@ -36,7 +36,7 @@ function db_read_content($conn, $f_audio, $f_video, $f_blender, $searchtext) {
     
 	    while($row = $result->fetch_assoc()) {
 	    	$onRightclick = " oncontextmenu=\"wfAction(event,'" .$row["content_uuid"]."');\"" ;
-			if($row["content_type"] == "Video") { $av = $row["content_uuid"]."','". "content/" .$row["content_uuid"]."/lores.mp4";}
+			if($row["content_type"] == "Video") { $av = $row["content_uuid"]."','". "content/" .$row["content_uuid"]."/lowres.mp4";}
 			elseif($row["content_type"]=="Audio") { $av = $row["content_uuid"]."','". "content/" .$row["content_uuid"]."/".$row["content_filename"];}
 			
 			$onClick = " onclick=\"cActivate(event,'".$row["content_type"]."' ,'" . $av ."');\"" ;
@@ -88,6 +88,7 @@ function add_DBJob($mysqli, $db, $uuid, $wf) {
 		$result = $mysqli->query($sql);
 		while($c = $result->fetch_assoc()) {
 			$src_filename =  $c['content_filename'];
+			$dest_filename=$src_filename;
 			$content_type = $c['content_type'];	
 		}
 	
@@ -105,6 +106,8 @@ function add_DBJob($mysqli, $db, $uuid, $wf) {
 				$processes = $mysqli->query($sql2);
 			    
 	    		while($pidRow = $processes->fetch_assoc()) {
+	    			if($pidRow["process_shortName"] == "genLowres")  { $dest_filename = "lowres.mp4";}
+	    			if($pidRow["process_type"] == "genThumbnail") {$dest_filename = $src_filename.".png" ;}
 	    			if($pidRow["process_type"] == "genThumbnail" && $content_type == "Audio")
 					{
 						continue;
@@ -129,7 +132,7 @@ function add_DBJob($mysqli, $db, $uuid, $wf) {
 	    									'0',
 	    									'".$pidRow["process_cmd"]."',
 	    									'".$content_type."',
-	    									'".$src_filename.".png',
+	    									'".$dest_filename."',
 	    									'".$src_filename."'
 	    									);";
 											
