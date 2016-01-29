@@ -127,7 +127,7 @@
 	// insert Workflows
 	$sql = "INSERT INTO `$db`.`$table` (wf_description, wf_short, wf_pids ,wf_icon) VALUES ('delete Content','delContent', 'delDBContent,delFileContent', 'img/delete.png');";
 	$conn->query($sql);
-	$sql = "INSERT INTO `$db`.`$table` (wf_description, wf_short, wf_pids ,wf_icon) VALUES ('Ingest Content','IngestContent', 'mediainfo,genThumbnail', 'img/mediainfo.png');";
+	$sql = "INSERT INTO `$db`.`$table` (wf_description, wf_short, wf_pids ,wf_icon) VALUES ('Ingest Content','IngestContent', 'mediainfo,genThumbnail,genLowres', 'img/mediainfo.png');";
 	$conn->query($sql);
 	
 	// add table process
@@ -156,6 +156,8 @@
 	$conn->query($sql);	
 	$sql = "INSERT INTO `$db`.`$table` (process_description, process_type,process_essential,process_shortName,process_cmd) VALUES ('generate Thumbnail ','genThumbnail','ffmpeg','genThumbnail',' -vframes 1 -s 106x60 ');";	
 	$conn->query($sql);	
+	$sql = "INSERT INTO `$db`.`$table` (process_description, process_type,process_essential,process_shortName,process_cmd) VALUES ('generate Lowres ','transcode','ffmpeg','genLowres',' -s 960x540 -b:v 1000k -vcodec libx264 -pix_fmt yuv420p -profile:v main ');";	
+	$conn->query($sql);
 	$sql = "INSERT INTO `$db`.`$table` (process_description, process_type,process_essential,process_shortName,process_cmd) VALUES ('transcode AVCINtra ','transcode','ffmbc','transAVCIntra',' -target avcintra100 ');";	
 	$conn->query($sql);
 	// add table encoder
