@@ -36,7 +36,10 @@ function db_read_content($conn, $f_audio, $f_video, $f_blender, $searchtext) {
     
 	    while($row = $result->fetch_assoc()) {
 	    	$onRightclick = " oncontextmenu=\"wfAction(event,'" .$row["content_uuid"]."');\"" ;
-			$onClick = " onclick=\"cActivate(event,'" .$row["content_uuid"]."','test.mp4');\"" ;
+			if($row["content_type"] == "Video") { $av = $row["content_uuid"]."','". "content/" .$row["content_uuid"]."/lores.mp4";}
+			elseif($row["content_type"]=="Audio") { $av = $row["content_uuid"]."','". "content/" .$row["content_uuid"]."/".$row["content_filename"];}
+			
+			$onClick = " onclick=\"cActivate(event,'".$row["content_type"]."' ,'" . $av ."');\"" ;
 	    	if($row["content_type"] == "Audio") { $thumbnail = "<img class=thumbnail src='img/audio.png'>"; }
 			if($row["content_type"] == "Video" || $row["content_type"] == "blender") {
 					if (file_exists ( CONTENT_DIR.$row["content_uuid"]."/".$row["content_thumbnail"] )) {

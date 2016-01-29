@@ -1,9 +1,16 @@
 
-function cActivate(event, uuid,loresVideo) {
+function cActivate(event,content_type, uuid,AV) {
 	
 	$(".content").removeClass("content-selected");
 	$("#"+uuid).addClass( "content-selected", 400 );
-	$('#vPlayer video').html('<source src="'+ loresVideo +'" type="video/mp4"></source>').load();
+	if(content_type == "Video") {
+		$("#vPlayer").html('<video controls class="vp"></video>');
+		$('#vPlayer video').html('<source src="'+ AV +'" type="video/mp4"></source>').load();
+	}	
+	if(content_type == "Audio") {
+		$("#vPlayer").html('<audio controls class="vp"></video>');
+		$('#vPlayer audio').html('<source src="'+ AV +'" type="audio/mp3"></source>').load();
+	}
 	var pr = "";	
 	$.getJSON("includes/readProcess.php?uuid='"+uuid+"'", function(data) {
 		        pr = "<table border=0 cellpadding=4 cellspacing=5>";
@@ -14,6 +21,7 @@ function cActivate(event, uuid,loresVideo) {
 				pr = pr + "</table>"; 
 				$("#jProcess").html(pr);
 	});
+	
 	
 }
 
