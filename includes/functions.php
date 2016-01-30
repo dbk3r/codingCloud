@@ -112,6 +112,10 @@ function add_DBJob($mysqli, $db, $uuid, $wf) {
 					{
 						continue;
 					}
+					if($pidRow["process_type"] == "transcode" && $content_type == "Audio")
+					{
+						continue;
+					}
 					if($pidRow["process_type"] == "mediainfo" && $content_type == "blender")
 					{
 						$essential_bin = "blender";

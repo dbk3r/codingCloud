@@ -2,21 +2,28 @@
 function cActivate(event,content_type, uuid,AV) {
 	
 	$(".content").removeClass("content-selected");
-	$("#"+uuid).addClass( "content-selected", 400 );
+	$("#"+uuid).addClass( "content-selected", 200 );
 	if(content_type == "Video") {
 		$("#vPlayer").html('<video controls class="vp"></video>');
+		$("#vPlayer").switchClass("aPlayer","vPlayer");
 		$('#vPlayer video').html('<source src="'+ AV +'" type="video/mp4"></source>').load();
 	}	
 	if(content_type == "Audio") {
-		$("#vPlayer").html('<audio controls class="vp"></video>');
+		$("#vPlayer").html('<audio controls class="ap"></video>');
+		$("#vPlayer").switchClass("vPlayer","aPlayer");
 		$('#vPlayer audio').html('<source src="'+ AV +'" type="audio/mp3"></source>').load();
 	}
 	var pr = "";	
 	$.getJSON("includes/readProcess.php?uuid='"+uuid+"'", function(data) {
-		        pr = "<table border=0 cellpadding=4 cellspacing=5>";
+		        pr = "<table width=100% border=0 cellpadding=4 cellspacing=5>";
 				
-				$.each(data.ps, function(i,ps){																		
-					pr = pr + "<tr class=proc><td>"+ps.job_type+"</td></tr>" ;				
+				$.each(data.ps, function(i,ps){		
+					if(ps.state =="0") {state='p_idle';}									
+					if(ps.state =="1") {state='p_working';}
+					if(ps.state =="2") {state='p_finished';}
+					if(ps.state =="3") {state='p_error';}
+					
+					pr = pr + "<tr class=proc><td>"+ps.job_type+"</td><td align=center class='"+ state +" p_font'>"+ps.progress+"</td></tr>" ;				
 				});
 				pr = pr + "</table>"; 
 				$("#jProcess").html(pr);

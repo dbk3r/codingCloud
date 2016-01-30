@@ -4,7 +4,8 @@
   background-color: #ffffff;
   width: 100%;
   height: 100%;
-  margin:10px;
+  
+  
   position:absolute;  
 }
 
@@ -278,15 +279,32 @@ a:visited { color:#fff; }
 	position: relative;
 	padding-bottom: 56.25%; /* 16:9 */	
 	height: 0;
+	margin:5px;
+	
+}
+.aPlayer {
+	
+	position: relative;
+	padding-bottom: 32px; /* 16:9 */	
+	height: 0;
+	margin:5px;
 	
 }
 .vp {
 	position: absolute;	
-	top: 0;
-	left: 0;
+	top: 3px;
+	left: 2px;
 	width: 100%;
 	height: 100%;
 }
+.ap {
+	position: absolute;	
+	top: 3px;
+	left: 2px;
+	width: 100%;
+	height: 100%;
+}
+
 .vControlls{
 	width:100%;
 	height:35px;
@@ -298,4 +316,27 @@ a:visited { color:#fff; }
 	margin-top:10px;
 	background-color: white;
 }
-
+.p_font{
+	font-family:verdana, sans-serif; font-weight: bold;	   
+	font-size:10px;
+    color:#ffffff;
+    -moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+}
+.p_working{
+	width:50px;
+	background-color:#F6A828;
+}
+.p_finished{
+	width:50px;
+	background-color:green;
+}
+.p_error{
+	width:50px;
+	background-color:red;
+}
+.p_idle{
+	width:50px;
+	background-color:gray;
+}
