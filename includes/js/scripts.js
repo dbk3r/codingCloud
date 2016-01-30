@@ -4,12 +4,12 @@ function cActivate(event,content_type, uuid,AV) {
 	$(".content").removeClass("content-selected");
 	$("#"+uuid).addClass( "content-selected", 200 );
 	if(content_type == "Video") {
-		$("#vPlayer").html('<video controls class="vp"></video>');
+		$("#vPlayer").html('<video id=cplayer controls class="vp"></video>');
 		$("#vPlayer").switchClass("aPlayer","vPlayer");
 		$('#vPlayer video').html('<source src="'+ AV +'" type="video/mp4"></source>');
 	}	
 	if(content_type == "Audio") {
-		$("#vPlayer").html('<audio controls class="ap"></video>');
+		$("#vPlayer").html('<audio id=cplayer controls class="ap"></video>');
 		$("#vPlayer").switchClass("vPlayer","aPlayer");
 		$('#vPlayer audio').html('<source src="'+ AV +'" type="audio/mp3"></source>');
 	}
@@ -80,7 +80,14 @@ function dbAction(wf, uuid) {
 				
 		$("#"+uuid).addClass( "content-red", 400 );
 		
-			
+		if(wf == "delContent"){ 
+			$("#cplayer").get(0).pause();			
+			$("#cplayer").empty().remove();
+			$("#"+uuid).remove();
+			$("#jProcess").html("");
+		}
+		
+		
 		$.ajax({
 		    url: "includes/db_action.php",
 		    type: "POST",
