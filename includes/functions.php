@@ -129,7 +129,7 @@ function add_DBJob($mysqli, $db, $uuid, $wf) {
 						$essential_bin = $pidRow["process_essential"];
 					}
 					
-	    				$sql3 = "INSERT INTO `$db`.`cc_jobs` (uuid, job_type,job_essential,state,job_cmd,content_type,dest_filename,src_filename) VALUES (
+	    				$sql3 = "INSERT INTO `$db`.`cc_jobs` (uuid, job_type,job_essential,state,job_cmd,content_type,dest_filename,src_filename,progress) VALUES (
 	    									'".$uuid."',
 	    									'".$pidRow["process_type"]."',
 	    									'".$essential_bin."',
@@ -137,7 +137,8 @@ function add_DBJob($mysqli, $db, $uuid, $wf) {
 	    									'".$pidRow["process_cmd"]."',
 	    									'".$content_type."',
 	    									'".$dest_filename."',
-	    									'".$src_filename."'
+	    									'".$src_filename."',
+	    									'0'
 	    									);";
 											
 						$mysqli->query($sql3);					

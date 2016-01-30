@@ -6,12 +6,12 @@ function cActivate(event,content_type, uuid,AV) {
 	if(content_type == "Video") {
 		$("#vPlayer").html('<video controls class="vp"></video>');
 		$("#vPlayer").switchClass("aPlayer","vPlayer");
-		$('#vPlayer video').html('<source src="'+ AV +'" type="video/mp4"></source>').load();
+		$('#vPlayer video').html('<source src="'+ AV +'" type="video/mp4"></source>');
 	}	
 	if(content_type == "Audio") {
 		$("#vPlayer").html('<audio controls class="ap"></video>');
 		$("#vPlayer").switchClass("vPlayer","aPlayer");
-		$('#vPlayer audio').html('<source src="'+ AV +'" type="audio/mp3"></source>').load();
+		$('#vPlayer audio').html('<source src="'+ AV +'" type="audio/mp3"></source>');
 	}
 	var pr = "";	
 	$.getJSON("includes/readProcess.php?uuid='"+uuid+"'", function(data) {
