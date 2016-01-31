@@ -4,6 +4,14 @@
 	include_once 'functions.php';
 	include_once 'db_connect.php';
 
+	if(isset($_POST['rJob'])) {
+		$restart = "UPDATE cc_jobs set state='0' where id='".$_POST['rJob']."'";
+		write_log($restart);
+		$mysqli->query($restart);
+		echo '{"status":"success"}';
+		$restart = NULL;
+	}
+
 	if(isset($_GET['getWF'])) {
 		
 		// read Workflows

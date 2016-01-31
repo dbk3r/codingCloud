@@ -1,4 +1,17 @@
 
+function restartJob(jobID) {
+	
+	$.ajax({
+		    url: "includes/db_action.php",
+		    type: "POST",
+		    data: 'rJob' +'='+ jobID ,
+		    success: function(data) {
+		    	contentReload();        
+		    }
+	    });
+	
+}
+
 function cActivate(event,content_type, uuid,AV) {
 	
 	$(".content").removeClass("content-selected");
@@ -23,7 +36,9 @@ function cActivate(event,content_type, uuid,AV) {
 					if(ps.state =="2") {state='p_finished';}
 					if(ps.state =="3") {state='p_error';}
 					
-					pr = pr + "<tr class=proc><td>"+ps.job_type+"</td><td align=center class='"+ state +" p_font'>"+ps.progress+"</td></tr>" ;				
+					var restartBtn = "<img onClick=\"restartJob('"+ps.id+"');\" valign=middle id=rJob"+ps.id+" class=restartJob src=img/restart.png>";
+					
+					pr = pr + "<tr class=proc><td>"+ps.job_type+"</td><td>"+restartBtn+"</td><td align=center class='"+ state +" p_font'>"+ps.progress+"</td></tr>" ;				
 				});
 				pr = pr + "</table>"; 
 				$("#jProcess").html(pr);

@@ -82,6 +82,8 @@ function db_read_content($conn, $f_audio, $f_video, $f_blender, $searchtext) {
 	}
 }	
 
+
+
 function add_DBJob($mysqli, $db, $uuid, $wf) {
 	
 		$sql = "SELECT * from cc_content where content_uuid='".$uuid."'";
