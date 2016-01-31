@@ -32,7 +32,8 @@
     	<script type="text/javascript" src="./includes/js/jquery.iframe-transport.js"></script> 
     	<script type="text/javascript" src="./includes/js/jquery.fileupload.js"></script>   		
 		<script type="text/javascript" src="./includes/js/file-upload.js"></script>				
-		<script type="text/javascript" src="./includes/js/jquery.dropdown.js"></script>		
+		<script type="text/javascript" src="./includes/js/jquery.dropdown.js"></script>	
+		<script type="text/javascript" src="./includes/js/VideoFrame.js"></script>		
 		<script type="text/javascript" src="./includes/js/scripts.js"></script>			
 		
     	<script type="text/javascript">

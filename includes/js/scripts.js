@@ -16,7 +16,7 @@ function cActivate(event,content_type, uuid,AV) {
 	
 	$(".content").removeClass("content-selected");
 	$("#"+uuid).addClass( "content-selected", 200 );
-	if(content_type == "Video") {
+	if(content_type == "Video") {		
 		$("#vPlayer").html('<video id=cplayer controls class="vp"></video>');
 		$("#vPlayer").switchClass("aPlayer","vPlayer");
 		$('#vPlayer video').html('<source src="'+ AV +'" type="video/mp4"></source>');
@@ -43,6 +43,20 @@ function cActivate(event,content_type, uuid,AV) {
 				pr = pr + "</table>"; 
 				$("#jProcess").html(pr);
 	});
+	
+			
+		var cvideo = VideoFrame({
+		    id: 'cplayer',
+		    frameRate: FrameRates.PAL,
+		    callback: function(response) {
+		    	var frame = cvideo.get();
+		    	$("#vTC").html(cvideo.toSMPTE(frame));		        
+		    }
+		    
+		});
+		cvideo.listen('frame',1);
+		var frame = cvideo.get();
+		$("#vTC").html(cvideo.toSMPTE(frame));	
 	
 	
 }
@@ -129,9 +143,10 @@ function contentReload(){
 		$("#mainDiv").css("height", "auto");
 			
 				
-		}); // end content reload
+		}); // end content reload	
+		
     
-	};	
+};	
 	
 $(document).ready( function() {			
  	
@@ -180,6 +195,8 @@ $(document).ready( function() {
 	$(document).mouseup(function(e) {
 	  $(document).unbind('mousemove');
 	});	
+	
+	
  				
 });
 
