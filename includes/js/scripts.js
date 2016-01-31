@@ -104,16 +104,21 @@ function ccAlert(text){
 }
 
 
-function dbAction(wf, uuid) {
-	
+function dbAction(wf, uuid) {	
 				
-		$("#"+uuid).addClass( "content-red", 400 );
-		
-		if(wf == "delContent"){ 
-			$("#cplayer").get(0).pause();			
-			$("#cplayer").empty().remove();
-			$("#"+uuid).remove();
-			$("#jProcess").html("");
+		if(wf == "delContent"){
+			$("#"+uuid).fadeOut(400, function() {
+				
+				if($("#cplayer").length > 0)
+				{			
+					$("#cplayer").get(0).pause();			
+					$("#cplayer").empty().remove();
+				}				
+                $("#"+uuid).remove();
+				$("#jProcess").html("");
+				$("#vTC").html("");			 
+				 
+			 });		
 		}
 		
 		
@@ -122,10 +127,9 @@ function dbAction(wf, uuid) {
 		    type: "POST",
 		    data: 'wf' +'='+ wf + '&uuid='+uuid,
 		    success: function(data) {
-		    	contentReload();        
+		    	//contentReload();        
 		    }
 	    });
-	
 	
 }
 

@@ -348,3 +348,6 @@ a:visited { color:#fff; }
 	font-size:16px;
 	color:#dddddd;
 }
+.restartJob:hover{
+	cursor: pointer;
+}
