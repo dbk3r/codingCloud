@@ -137,22 +137,24 @@ function contentReload(){
 		if($("#blender-filter").is(':checked')) {	var ab = "&f_blender=on"; } else { ab=""; }
 		if($("#search-input").val().length != 0) {var si = "&search="+$("#search-input").val();} else { si ="";}
 		$("#tbl-content").load('includes/content.php?'+af+av+ab+si,function() {	
-		$("#leftDiv").css("height", $("#tbl-content").height() + $("#nav-bar").height() + $("#search-content").height()+30);	
-		$("#splitDiv").css("height", $("#leftDiv").height()- 8);	
-		$("#rightDiv").css({"height":$("#leftDiv").height()- 8, "margin-left":$("#leftDiv").width()+4});
-		$("#mainDiv").css("height", "auto");
+		fitCanvas();
 			
 				
 		}); // end content reload	
 		
     
 };	
+
+function fitCanvas() {
+	$("#leftDiv").css("height", $("#tbl-content").height() + $("#nav-bar").height() + $("#search-content").height()+30);	
+	$("#splitDiv").css("height", $("#leftDiv").height()- 8);	
+	$("#rightDiv").css({"height":$("#leftDiv").height()- 8, "margin-left":$("#leftDiv").width()+4});
+	$("#mainDiv").css("height", "auto");
+}	
 	
 $(document).ready( function() {			
- 	
- 	
- 	contentReload();
- 	
+ 		
+ 	fitCanvas();
  	$(".search-cb").click(function() {
 		contentReload();
 									

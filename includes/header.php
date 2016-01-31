@@ -18,7 +18,7 @@
 		<meta charset="utf-8">
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">    	
-    	<title>CC v-0.1</title>   
+    	<title>CC v-0.1c</title>   
     	 	
     	
     	<link rel="stylesheet" href="./includes/css/upload.css" rel="stylesheet" />
@@ -39,9 +39,9 @@
     	<script type="text/javascript">
 								
 			$(window).resize(function(){				
-							
+				document.body.style.background = 'white';			
 				$("#splitDiv").css("height", $("#leftDiv").height());
-				contentReload();	
+				fitCanvas();	
 				
 			});
 			

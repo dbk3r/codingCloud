@@ -39,7 +39,7 @@
 		
 		<div id="rightDiv" class="rightDiv">
 			<div id=vPlayer class=vPlayer></div>
-			<div id=vControls class=vControlls>
+			<div id=vControls class=vControls>
 				<div id=vTC class=vTC></div>
 				<div id=vplaypause class=vplaypause></div>
 				<div id=vforward class=vforward></div>

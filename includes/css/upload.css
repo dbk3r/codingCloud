@@ -13,7 +13,7 @@
     General Styles
 --------------------------*/
 
-
+/*-------------------------
 html{
     background-color:#ebebec;
 
@@ -23,7 +23,7 @@ html{
 
     min-height:900px;
 }
-
+--------------------------*/
 body{
     font:15px/1.3 Arial, sans-serif;
     color: #4f4f4f;
