@@ -65,6 +65,7 @@ function cActivate(event,content_type, uuid,AV) {
 		cvideo.listen('frame',1);		
 		updateTC(cvideo);
 
+			
 			$("#cplaypause").click(function(){
 				if($("#cplayer").get(0).paused){
 					$("#cplayer").get(0).play();
