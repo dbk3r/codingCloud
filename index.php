@@ -41,9 +41,13 @@
 			<div id=vPlayer class=vPlayer></div>
 			<div id=vControls class=vControls>
 				<div id=vTC class=vTC></div>
-				<div id=vplaypause class=vplaypause></div>
-				<div id=vforward class=vforward></div>
-				<div id=vback class=vback></div>
+				<div id="vplaypause" class="vplaypause"><img id="cplaypause" class="cplay cpadding" src=img/play.png></div>				
+				<div id="vback" class="vback"><img id="cback" class="cback cpadding" src=img/backward.png></div>
+				<div id="vforward" class="vforward"><img id="cforward" class="cforward cpadding" src=img/forward.png></div>
+				<div id="cslider" class="cslider">
+					
+				</div>
+								
 			</div>
 			<div id=jProcess class=jProcess></div>
 		</div>

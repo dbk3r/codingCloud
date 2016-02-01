@@ -1,4 +1,6 @@
 
+
+
 function restartJob(jobID) {
 	
 	$.ajax({
@@ -14,18 +16,24 @@ function restartJob(jobID) {
 
 function cActivate(event,content_type, uuid,AV) {
 	
+	var cvideo = null;
+	$("#cplayer").remove();
 	$(".content").removeClass("content-selected");
-	$("#"+uuid).addClass( "content-selected", 200 );
+	$("#"+uuid).addClass( "content-selected", 100 );
+	
 	if(content_type == "Video") {		
-		$("#vPlayer").html('<video id=cplayer controls class="vp"></video>');
+		$("#vPlayer").html('<video id=cplayer class="vp" preload="auto"></video>');
 		$("#vPlayer").switchClass("aPlayer","vPlayer");
 		$('#vPlayer video').html('<source src="'+ AV +'" type="video/mp4"></source>');
 	}	
 	if(content_type == "Audio") {
-		$("#vPlayer").html('<audio id=cplayer controls class="ap"></video>');
+		$("#vPlayer").html('<audio id=cplayer class="ap" preload="auto"></video>');
 		$("#vPlayer").switchClass("vPlayer","aPlayer");
 		$('#vPlayer audio').html('<source src="'+ AV +'" type="audio/mp3"></source>');
 	}
+	$("#vControls").show();
+	$("#cplaypause").switchClass("cpause","cplay");
+	
 	var pr = "";	
 	$.getJSON("includes/readProcess.php?uuid='"+uuid+"'", function(data) {
 		        pr = "<table width=100% border=0 cellpadding=4 cellspacing=5>";
@@ -51,14 +59,42 @@ function cActivate(event,content_type, uuid,AV) {
 		    callback: function(response) {
 		    	var frame = cvideo.get();
 		    	$("#vTC").html(cvideo.toSMPTE(frame));		        
-		    }
-		    
+		    }		    
 		});
-		cvideo.listen('frame',1);
-		var frame = cvideo.get();
-		$("#vTC").html(cvideo.toSMPTE(frame));	
-	
-	
+		
+		cvideo.listen('frame',1);		
+		updateTC(cvideo);
+
+			$("#cplaypause").click(function(){
+				if($("#cplayer").get(0).paused){
+					$("#cplayer").get(0).play();
+					$("#cplaypause").switchClass("cplay","cpause");
+				}
+				else {
+					$("#cplayer").get(0).pause();
+					$("#cplaypause").switchClass("cpause","cplay");
+				}
+			});			
+			
+			$("#cforward").click(function(){
+				$("#cplayer").get(0).pause();
+				cvideo.seekForward(1,updateTC(cvideo));
+			});
+			$("#cback").click(function(){
+				$("#cplayer").get(0).pause();
+				cvideo.seekBackward(1,updateTC(cvideo));
+			});
+			$("#cplayer").bind("ended", function(){
+				$("#cplaypause").switchClass("cpause","cplay");
+			});
+			
+		
+			
+}
+
+function updateTC(vid) {
+	var frame = vid.get();
+		$("#vTC").html(vid.toSMPTE(frame));	
 }
 
 function wfAction(event,uuid) {	
@@ -157,6 +193,8 @@ function fitCanvas() {
 }	
 	
 $(document).ready( function() {			
+ 	
+ 	$("#vControls").hide();	
  		
  	fitCanvas();
  	$(".search-cb").click(function() {

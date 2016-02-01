@@ -29,7 +29,7 @@ if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
 				
 				unlink($upload_dir.$org_filename);
 				
-				// parse unziped folder
+				// parse unziped root folder
 				$dh  = opendir($content_dir.$uuid);
 				while (false !== ($filename = readdir($dh))) {
 					
@@ -40,12 +40,14 @@ if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
 						
 						
 						if($f_ext == "blend") {
-							// add blendfile to Database							
-							add_DBContent($mysqli, $filename, $uuid, "blender");	
+							// adding blendfile to Database							
+							add_DBContent($mysqli, $filename, $uuid, "blender", $f_ext);	
+							rename($content_dir.$uuid."/".$filename, $content_dir.$uuid."/".$uuid.".".$f_ext);
 						} else {
 							if(in_array(strtolower($f_ext), $allowed)){
-								// add file to Database													
-								add_DBContent($mysqli, $filename, $uuid, $content_type);						
+								// add file to Database																					
+								add_DBContent($mysqli, $filename, $uuid, $content_type, $f_ext);
+								rename($content_dir.$uuid."/".$filename, $content_dir.$uuid."/".$uuid.".".$f_ext);						
 							} else {
 								// delete file								
 								unlink($content_dir.$uuid."/".$filename);
@@ -54,21 +56,21 @@ if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
 					} //end ignore dots
 				} // end while  dirscan	
 							
-			} // ende unzip
+			} // end unzip
 		add_DBJob($mysqli, DB, $uuid, "IngestContent");
 		echo '{"success":"success"}';	
 		exit;	
 		} // end if zip
 		
-		rename($upload_dir.$org_filename, $content_dir.$uuid."/".$org_filename);
+		rename($upload_dir.$org_filename, $content_dir.$uuid."/".$uuid.".".$extension);
 		if ($extension == "blend") {
 			# add blend-file to Database
-			add_DBContent($mysqli, $org_filename, $uuid, "blender");			
+			add_DBContent($mysqli, $org_filename, $uuid, "blender", $extension);			
 		}
 		else {
 			# add uploaded File to Database
 			$content_type = getContentType($extension);					
-			add_DBContent($mysqli, $org_filename, $uuid, $content_type);
+			add_DBContent($mysqli, $org_filename, $uuid, $content_type, $extension);
 			
 		}
 		add_DBJob($mysqli, DB, $uuid, "IngestContent");

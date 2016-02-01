@@ -151,10 +151,10 @@ function add_DBJob($mysqli, $db, $uuid, $wf) {
 	
 }
 
-function add_DBContent($conn, $content_filename, $content_uuid, $content_type) {
+function add_DBContent($conn, $content_filename, $content_uuid, $content_type, $extension) {
 	
 	
-	$sql = "INSERT INTO cc_content (content_description,content_filename,content_uuid,content_type) VALUES ('$content_filename','$content_filename','$content_uuid','$content_type')";
+	$sql = "INSERT INTO cc_content (content_description,content_filename,content_uuid,content_type) VALUES ('$content_filename','$content_uuid.$extension','$content_uuid','$content_type')";
 
 	if ($conn->query($sql) === TRUE) {
 	    
