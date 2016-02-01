@@ -22,14 +22,13 @@ function cActivate(event,content_type, uuid,AV) {
 	$("#"+uuid).addClass( "content-selected", 100 );
 	
 	if(content_type == "Video") {		
-		$("#vPlayer").html('<video id=cplayer class="vp" preload="auto"></video>');
-		$("#vPlayer").switchClass("aPlayer","vPlayer");
-		$('#vPlayer video').html('<source src="'+ AV +'" type="video/mp4"></source>');
+		$("#vPlayer").html('<video id=cplayer class="vp" preload="auto"><source src="'+ AV +'" type="video/mp4"></video>');
+		$("#vPlayer").switchClass("aPlayer","vPlayer");		
 	}	
 	if(content_type == "Audio") {
-		$("#vPlayer").html('<audio id=cplayer class="ap" preload="auto"></video>');
+		$("#vPlayer").html('<audio id=cplayer class="ap" preload="auto"><source src="'+ AV +'" type="audio/mp3"></video>');
 		$("#vPlayer").switchClass("vPlayer","aPlayer");
-		$('#vPlayer audio').html('<source src="'+ AV +'" type="audio/mp3"></source>');
+		
 	}
 	$("#vControls").show();
 	$("#cplaypause").switchClass("cpause","cplay");
@@ -62,32 +61,11 @@ function cActivate(event,content_type, uuid,AV) {
 		    }		    
 		});
 		
-		cvideo.listen('frame',1);		
+		cvideo.listen('frame',1);			
 		updateTC(cvideo);
 
 			
-			$("#cplaypause").click(function(){
-				if($("#cplayer").get(0).paused){
-					$("#cplayer").get(0).play();
-					$("#cplaypause").switchClass("cplay","cpause");
-				}
-				else {
-					$("#cplayer").get(0).pause();
-					$("#cplaypause").switchClass("cpause","cplay");
-				}
-			});			
 			
-			$("#cforward").click(function(){
-				$("#cplayer").get(0).pause();
-				cvideo.seekForward(1,updateTC(cvideo));
-			});
-			$("#cback").click(function(){
-				$("#cplayer").get(0).pause();
-				cvideo.seekBackward(1,updateTC(cvideo));
-			});
-			$("#cplayer").bind("ended", function(){
-				$("#cplaypause").switchClass("cpause","cplay");
-			});
 			
 		
 			
@@ -241,7 +219,28 @@ $(document).ready( function() {
 	  $(document).unbind('mousemove');
 	});	
 	
+	$("#cplaypause").click(function(){
+		if($("#cplayer").get(0).paused){
+			$("#cplaypause").switchClass("cplay","cpause");
+			$("#cplayer").get(0).play();					
+		}
+		else {
+			$("#cplaypause").switchClass("cpause","cplay");
+			$("#cplayer").get(0).pause();					
+		}
+	});			
 	
+	$("#cforward").click(function(){
+		$("#cplayer").get(0).pause();
+		cvideo.seekForward(1,updateTC(cvideo));
+	});
+	$("#cback").click(function(){
+		$("#cplayer").get(0).pause();
+		cvideo.seekBackward(1,updateTC(cvideo));
+	});
+	$("#cplayer").bind("ended", function(){
+		$("#cplaypause").switchClass("cpause","cplay");
+	});
  				
 });
 
