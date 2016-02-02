@@ -1,5 +1,5 @@
 
-
+var cvideo;
 
 function restartJob(jobID) {
 	
@@ -50,24 +50,25 @@ function cActivate(event,content_type, uuid,AV) {
 				pr = pr + "</table>"; 
 				$("#jProcess").html(pr);
 	});
-	
-			
-		var cvideo = VideoFrame({
+	cvideo = VideoFrame({
 		    id: 'cplayer',
 		    frameRate: FrameRates.PAL,
 		    callback: function(response) {
 		    	var frame = cvideo.get();
 		    	$("#vTC").html(cvideo.toSMPTE(frame));		        
 		    }		    
-		});
-		
-		cvideo.listen('frame',1);			
-		updateTC(cvideo);
-
-			
-			
-			
-		
+	});	
+	cvideo.listen('frame',1);			
+	updateTC(cvideo);		
+	
+	$("#cforward").click(function(){
+		$("#cplayer").get(0).pause();
+		cvideo.seekForward(1,updateTC(cvideo));
+	});
+	$("#cback").click(function(){
+		$("#cplayer").get(0).pause();
+		cvideo.seekBackward(1,updateTC(cvideo));
+	});
 			
 }
 
@@ -219,25 +220,22 @@ $(document).ready( function() {
 	  $(document).unbind('mousemove');
 	});	
 	
+	
+	
 	$("#cplaypause").click(function(){
 		if($("#cplayer").get(0).paused){
+			$("#cplaypause").attr("src","img/pause.png");
 			$("#cplaypause").switchClass("cplay","cpause");
 			$("#cplayer").get(0).play();					
 		}
 		else {
+			$("#cplaypause").attr("src","img/play.png");
 			$("#cplaypause").switchClass("cpause","cplay");
 			$("#cplayer").get(0).pause();					
 		}
 	});			
 	
-	$("#cforward").click(function(){
-		$("#cplayer").get(0).pause();
-		cvideo.seekForward(1,updateTC(cvideo));
-	});
-	$("#cback").click(function(){
-		$("#cplayer").get(0).pause();
-		cvideo.seekBackward(1,updateTC(cvideo));
-	});
+	
 	$("#cplayer").bind("ended", function(){
 		$("#cplaypause").switchClass("cpause","cplay");
 	});
