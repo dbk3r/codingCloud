@@ -394,3 +394,7 @@ a:visited { color:#fff; }
 	background-color:#007A96;
 	opacity:0.4;
 }
+.encActive{
+	background-color:yellow;
+}
+

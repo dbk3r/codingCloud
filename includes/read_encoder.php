@@ -13,7 +13,7 @@
 		echo "			<td>Instanz</td>";
 		echo "			<td>IP-Adresse</td>";
 		echo "			<td width=50 align=center>CPU's</td>";		
-		echo "			<td width=80 align=center>aktive Jobs</td>";
+		echo "			<td width=80 align=center>Status</td>";
 		echo "      </tr>";		
 			
 	    while($row = $result->fetch_assoc()) {   
@@ -21,8 +21,9 @@
 			echo "      <tr>";
 			echo "			<td>".$row['encoder_instance']."</td>";
 			echo "			<td>".$row['encoder_ip']."</td>";
-			echo "			<td align=center>".$row['encoder_cpus']."</td>";			
-			echo "			<td align=center>".$row['encoder_used_slots']."</td>";
+			echo "			<td align=center>".$row['encoder_cpus']."</td>";
+			if($row['encoder_used_slots'] > 0) { $encStateClass="encActive";} else {$encStateClass="";}			
+			echo "			<td class=".$encStateClass."></td>";
 			echo "      </tr>";
 			
 	    }
