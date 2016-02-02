@@ -7,7 +7,7 @@
 		$f_audio = $_GET['f_audio']; 
 		$f_video = $_GET['f_video'];
 		$f_blender = $_GET['f_blender'];
-		$searchtext = $_GET['search'];
+		if(isset($_GET['search'])) { $searchtext = $_GET['search'];}else{$searchtext="";}
 	}
 	else
 	{
