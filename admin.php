@@ -19,12 +19,16 @@
 			if($_GET['show'] == "m")
 			{
 				echo "Coder/Worker Monitor";
+				$incl = "./includes/read_encoder.php";
 				$btn = "zur&uuml;ck";
 			}
 			
 		?>
 		
 		<div id-settings-content class=tbl-content>
+			<div id="monContent" class="content">				
+				<?php include_once $incl; ?>				
+			</div>
 			
 			<div class=float-right><a id=save-<?php echo $_GET['show'] ;?> href=index.php class=settings-btn><?php echo $btn; ?></a></div>
 		</div>

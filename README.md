@@ -32,12 +32,12 @@ Demo Coming soon.
 
 - Login, Logout, Register
 - Admin Panel
-- -> Workflow editor
+- -> Workflow Editor
 - -> Process Editor
-- -> Monitoring
+- -> Monitoring ~~(Encoder/Worker)~~
 - User Settings
 - ~~Search Results~~
 - ~~Filter Results~~
 - ~~Content-Proberty-Panel~~
-- Content based Job-Overview
+- ~~Content based Job-Overview~~
 - Perl-Backend Adaptions
