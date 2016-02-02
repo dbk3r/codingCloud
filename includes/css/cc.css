@@ -275,10 +275,11 @@ a:visited { color:#fff; }
 	background-color:#373a3d;
 	margin-left: 65%;
 	margin-top: 5px;
+	
 }
 .vPlayer {
-	background-color:#373a3d;
-	position: relative;
+	background-color:#373a3d;	
+	position: relative;	
 	padding-bottom: 56.25%; /* 16:9 */	
 	height: 0;
 	margin:0px;

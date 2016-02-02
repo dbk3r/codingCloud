@@ -14,12 +14,14 @@ function restartJob(jobID) {
 	
 }
 
+
+
 function cActivate(event,content_type, uuid,AV) {
 	
 	var cvideo = null;
 	$("#cplayer").remove();
 	$(".content").removeClass("content-selected");
-	$("#"+uuid).addClass( "content-selected", 100 );
+	$("#"+uuid).addClass( "content-selected", 100 );	
 	
 	if(content_type == "Video") {		
 		$("#vPlayer").html('<video id=cplayer class="vp" preload="auto"><source src="'+ AV +'" type="video/mp4"></video>');
