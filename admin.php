@@ -18,15 +18,15 @@
 			}
 			if($_GET['show'] == "m")
 			{
-				echo "Coder/Worker Monitor";
-				$incl = "./includes/read_encoder.php";
+				echo "Coder/Worker Monitor<br><br>";
+				$incl = "./includes/monitor.php";
 				$btn = "zur&uuml;ck";
 			}
 			
 		?>
 		
 		<div id-settings-content class=tbl-content>
-			<div id="monContent" class="content">				
+			<div id="monContent" class="content2">				
 				<?php include_once $incl; ?>				
 			</div>
 			

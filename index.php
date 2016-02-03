@@ -44,11 +44,11 @@
 				<div id="vplaypause" class="vplaypause"><img id="cplaypause" class="cplay cpadding" src=img/play.png></div>				
 				<div id="vback" class="vback"><img id="cback" class="cback cpadding" src=img/backward.png></div>
 				<div id="vforward" class="vforward"><img id="cforward" class="cforward cpadding" src=img/forward.png></div>
-				<div id="cslider" class="cslider">
-					
+				<div id="cslider" class="cslider">					
 				</div>
 								
 			</div>
+			<div id=procreload class=procreload></div>
 			<div id=jProcess class=jProcess></div>
 		</div>
 

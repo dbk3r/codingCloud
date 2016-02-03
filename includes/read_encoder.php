@@ -18,7 +18,7 @@
 			
 	    while($row = $result->fetch_assoc()) {   
 			
-			echo "      <tr>";
+			echo "      <tr class=content>";
 			echo "			<td>".$row['encoder_instance']."</td>";
 			echo "			<td>".$row['encoder_ip']."</td>";
 			echo "			<td align=center>".$row['encoder_cpus']."</td>";

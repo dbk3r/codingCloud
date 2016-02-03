@@ -11,10 +11,12 @@ function restartJob(jobID) {
 		    	contentReload();        
 		    }
 	    });
-	
+	    
 }
 
-
+function reloadProc(puuid) {	
+	$("#jProcess").load("includes/readProcess.php?uuid='"+puuid+"'");
+}
 
 function cActivate(event,content_type, uuid,AV) {
 	
@@ -35,23 +37,11 @@ function cActivate(event,content_type, uuid,AV) {
 	$("#vControls").show();
 	$("#cplaypause").switchClass("cpause","cplay");
 	
-	var pr = "";	
-	$.getJSON("includes/readProcess.php?uuid='"+uuid+"'", function(data) {
-		        pr = "<table width=100% border=0 cellpadding=4 cellspacing=5>";
-				
-				$.each(data.ps, function(i,ps){		
-					if(ps.state =="0") {state='p_idle';}									
-					if(ps.state =="1") {state='p_working';}
-					if(ps.state =="2") {state='p_finished';}
-					if(ps.state =="3") {state='p_error';}
-					
-					var restartBtn = "<img onClick=\"restartJob('"+ps.id+"');\" valign=middle id=rJob"+ps.id+" class=restartJob src=img/restart.png>";
-					
-					pr = pr + "<tr class=proc><td>"+ps.job_type+"</td><td>"+restartBtn+"</td><td align=center class='"+ state +" p_font'>"+ps.progress+"</td></tr>" ;				
-				});
-				pr = pr + "</table>"; 
-				$("#jProcess").html(pr);
-	});
+	$("#procreload").html("<img onClick=\"reloadProc('"+uuid+"');\" valign=middle  class=clRelProc src=img/refresh.png>" );
+	reloadProc(uuid);
+	
+	
+ 	
 	cvideo = VideoFrame({
 		    id: 'cplayer',
 		    frameRate: FrameRates.PAL,
@@ -176,6 +166,7 @@ function fitCanvas() {
 	
 $(document).ready( function() {			
  	
+  	
  	$("#vControls").hide();	
  		
  	fitCanvas();

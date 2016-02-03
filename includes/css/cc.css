@@ -40,6 +40,11 @@ html {
 	margin-bottom:1px;	
 	
 }
+.content2{
+	font-family:verdana, sans-serif; font-weight: bold;
+	font-size:12px;
+	color:#373a3d;
+}
 .content-selected{
 	background-color: #EB8F00;	
 	opacity: 0.9;
@@ -398,4 +403,8 @@ a:visited { color:#fff; }
 .encActive{
 	background-color:yellow;
 }
-
+.procreload{
+	float:right;
+	margin:5px;
+	padding:10px;
+}

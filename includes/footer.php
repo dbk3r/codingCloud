@@ -8,6 +8,6 @@
 </html>
 
 <?php
-	include_once 'includes/db_disconnect.php';
+	include 'includes/db_disconnect.php';
 
 ?>

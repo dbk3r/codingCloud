@@ -22,7 +22,8 @@
     	 	
     	
     	<link rel="stylesheet" href="./includes/css/upload.css" rel="stylesheet" />
-    	<link rel="stylesheet" href="./includes/css/jquery.dropdown.css" rel="stylesheet" />    	
+    	<link rel="stylesheet" href="./includes/css/jquery.dropdown.css" rel="stylesheet" /> 
+    	<link rel="stylesheet" href="./includes/css/jquery-ui.css" rel="stylesheet" />    	
     	<link rel="stylesheet" href="./includes/css/cc.css" rel="stylesheet" />
     	
     	<script type="text/javascript" src="./includes/js/jquery-2.1.4.min.js"></script>
@@ -37,6 +38,10 @@
 		<script type="text/javascript" src="./includes/js/scripts.js"></script>			
 		
     	<script type="text/javascript">
+			
+			$(function() {
+			    $( "#monitortabs" ).tabs();
+			});
 								
 			$(window).resize(function(){				
 				document.body.style.background = 'white';			
