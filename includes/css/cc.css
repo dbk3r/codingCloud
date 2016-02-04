@@ -41,8 +41,8 @@ html {
 	
 }
 .content2{
-	font-family:verdana, sans-serif; font-weight: bold;
-	font-size:12px;
+	font-family:verdana, sans-serif; font-weight: normal;
+	font-size:10px;
 	color:#373a3d;
 }
 .content-selected{
@@ -332,19 +332,19 @@ a:visited { color:#fff; }
 	-webkit-border-radius: 8px;
 	border-radius: 8px;
 }
-.p_working{
+.state-running{
 	width:50px;
 	background-color:#F6A828;
 }
-.p_finished{
+.state-success{
 	width:50px;
 	background-color:green;
 }
-.p_error{
+.state-failed{
 	width:50px;
 	background-color:red;
 }
-.p_idle{
+.state-idle{
 	width:50px;
 	background-color:gray;
 }

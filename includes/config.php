@@ -22,3 +22,4 @@ define("LOGFILE", "/var/www/html/cc/log/cc.log");    // NUR FÜR DIE ENTWICKLUNG
 
 include 'content_allowed.php';
 
+$states = array('waiting', 'running','success','failed');

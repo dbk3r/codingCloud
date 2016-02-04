@@ -8,10 +8,16 @@ function restartJob(jobID) {
 		    type: "POST",
 		    data: 'rJob' +'='+ jobID ,
 		    success: function(data) {
-		    	contentReload();        
+		    	//contentReload();        
 		    }
 	    });
 	    
+}
+
+function reloadJobs(){
+	
+	$("#Tab-Jobs").load("includes/read_jobs.php");
+	$("#Tab-Encoder").load("includes/read_encoder.php");
 }
 
 function reloadProc(puuid) {	

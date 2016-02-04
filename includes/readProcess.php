@@ -10,14 +10,10 @@
 			if ($ps->num_rows > 0) {
 				
 				echo "<table width=100% border=0 cellpadding=4 cellspacing=5>" ;
-	    		while($p = $ps->fetch_assoc()) {
-					if($p["state"] == "0") {$state='p_idle';}									
-					if($p["state"] == "1") {$state='p_working';}
-					if($p["state"] == "2") {$state='p_finished';}
-					if($p["state"] == "3") {$state='p_error';}
+	    		while($p = $ps->fetch_assoc()) {					
 				
 				$restartBtn = "<img onClick=\"restartJob('".$p['id']."');\" valign=middle id=rJob".$p['id']." class=restartJob src=img/restart.png>";
-				echo "<tr class=proc><td>".$p['job_type']."</td><td>".$restartBtn."</td><td align=center class='". $state ." p_font'>".$p['progress']."</td></tr>" ;				
+				echo "<tr class=proc><td>".$p['job_type']."</td><td>".$restartBtn."</td><td align=center class='state-". $states[$p["state"]] ." p_font'>".$p['progress']."</td></tr>" ;				
 				}
 				echo "</table>"; 
 

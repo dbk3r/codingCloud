@@ -5,17 +5,19 @@
 
 
 ?>
-
+<p align=right><img onClick="reloadJobs();" valign=middle  class=clRelProc src=img/refresh.png></p>
+<br><br>
 <div id="monitortabs">
   <ul>
-    <li><a href="#Encoder">Encoder</a></li>
-    <li><a href="#Jobs">Jobs</a></li>
+    <li><a href="#Tab-Encoder">Encoder</a></li>
+    <li><a href="#Tab-Jobs">Jobs</a></li>
     
   </ul>
-  <div id="Encoder">
+  <div id="Tab-Encoder">
   	<?php include_once 'read_encoder.php'; ?>
      </div>
-  <div id="Jobs">
+  <div id="Tab-Jobs">
+  	<?php include_once 'read_jobs.php'; ?>
     </div>
   
 </div>

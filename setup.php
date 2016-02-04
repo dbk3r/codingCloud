@@ -168,6 +168,8 @@
 	        `encoder_used_slots` INT(2),
 			`encoder_max_slots` INT(2),			
 			`encoder_cpus` INT(2),
+			`encoder_entire_jobs` INT(11),
+			`encoder_failed_jobs` INT(11),
 			`encoder_instance` VARCHAR(25),
 			`encoder_ip` VARCHAR(25) );
 	        ";
