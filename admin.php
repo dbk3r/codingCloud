@@ -18,7 +18,7 @@
 			}
 			if($_GET['show'] == "m")
 			{
-				echo "Coder/Worker Monitor<br><br>";
+				echo "Coder/Worker Monitor<br><br>";				
 				$incl = "./includes/monitor.php";
 				$btn = "zur&uuml;ck";
 			}
