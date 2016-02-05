@@ -123,6 +123,13 @@ td {
 	top:5000px;
 	border: 1px solid #111111;
 }
+.sliderPointer{
+	width:3px;
+	height:30px;
+	background-color:red;
+	position:absolute;
+	
+}
 .menutr:hover{
 	background-color: #eeeeee;	
 	cursor: pointer;

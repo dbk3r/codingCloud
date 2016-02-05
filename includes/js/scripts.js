@@ -1,5 +1,5 @@
 
-var cvideo;
+var cvideo = null;
 
 function restartJob(jobID) {
 	
@@ -24,8 +24,13 @@ function reloadProc(puuid) {
 	$("#jProcess").load("includes/readProcess.php?uuid='"+puuid+"'");
 }
 
+var curFrame;
+var ratio;
+
 function cActivate(event,content_type, uuid,AV) {
-	
+	curFrame = 1;
+	ratio = 1;
+	updateSliderPointer(curFrame);
 	var cvideo = null;
 	$("#cplayer").remove();
 	$(".content").removeClass("content-selected");
@@ -53,7 +58,8 @@ function cActivate(event,content_type, uuid,AV) {
 		    frameRate: FrameRates.PAL,
 		    callback: function(response) {
 		    	var frame = cvideo.get();
-		    	$("#vTC").html(cvideo.toSMPTE(frame));		        
+		    	$("#vTC").html(cvideo.toSMPTE(frame));
+		    	updateSliderPointer(frame);		        
 		    }		    
 	});	
 	cvideo.listen('frame',1);			
@@ -67,7 +73,67 @@ function cActivate(event,content_type, uuid,AV) {
 		$("#cplayer").get(0).pause();
 		cvideo.seekBackward(1,updateTC(cvideo));
 	});
+		
+	
+		
+	$("#cslider").mousedown(function(e){
+		
+		e.preventDefault();
+		var mouseX;
+		var mouseY;
+		$(document).mousemove( function(e) {
+		e.preventDefault();
+		mouseX = e.clientX; 
+	   	mouseY = e.clientY;	
+	   	var maxPos = $('#cslider').offset().left+$('#cslider').width();
+	   	var minPos = $('#cslider').offset().left;
+	   	var vFrames = Math.round($("#cplayer").get(0).duration * cvideo.frameRate);
+	   	
+		if ( mouseX >= minPos  && mouseX <= maxPos) 
+		{
 			
+		    var sliderWidth = $("#cslider").width();		
+		    			     
+		    var x = mouseX - $('#cslider').offset().left;		 
+		    ratio = vFrames/$('#cslider').width();           
+        	curFrame= Math.floor(x * ratio);   
+		    if (curFrame < 1) {curFrame = 1;}
+		    if (curFrame > vFrames) {curFrame = vFrames;}
+		    $("#cplayer").get(0).currentTime = curFrame / cvideo.frameRate;
+		    updateSliderPointer(curFrame);
+		    	
+	 	}
+	    });
+	});
+	$("#cslider").mouseup(function(e){
+		$(document).unbind('mousemove');	
+		
+	});
+		
+		
+	
+}
+
+function frametoSMPTE(frame){	
+	
+	var frameNumber = Number(frame);
+	var fps = 25;
+	function wrap(n) { return ((n < 10) ? '0' + n : n); }
+	var _hour = ((fps * 60) * 60), _minute = (fps * 60);
+	var _hours = (frameNumber / _hour).toFixed(0);
+	var _minutes = (Number((frameNumber / _minute).toString().split('.')[0]) % 60);
+	var _seconds = (Number((frameNumber / fps).toString().split('.')[0]) % 60);
+	var SMPTE = (wrap(_hours) + ':' + wrap(_minutes) + ':' + wrap(_seconds) + ':' + wrap(frameNumber % fps));
+	return SMPTE;
+
+}
+
+function updateSliderPointer(frame) {	
+	
+	var nPos = $('#cslider').offset().left + (frame/ratio) - 1;
+	$("#sliderPointer").offset({left:nPos,top:$("#cslider").offset().top});
+	$("#vTC").html(frametoSMPTE(frame));
+	
 }
 
 function updateTC(vid) {
@@ -133,8 +199,7 @@ function dbAction(wf, uuid) {
 				$("#vTC").html("");			 
 				 
 			 });		
-		}
-		
+		}		
 		
 		$.ajax({
 		    url: "includes/db_action.php",
@@ -193,8 +258,7 @@ $(document).ready( function() {
 	$(window).resize();
 	$("#refresh-btn").click(function() {
 		contentReload();
-	});
-	
+	});	
 		
 	var min = 600;
 	var max = 3600;
@@ -211,7 +275,7 @@ $(document).ready( function() {
 	      $("#splitDiv").css("height", $("#leftDiv").height()- 10);	
 		  $("#rightDiv").css({"height":$("#leftDiv").height()- 10, "margin-left":$("#leftDiv").width()+4});
 		  $("#mainDiv").css("height", "auto");
-	      
+	      updateSliderPointer(curFrame);
 	    }
 	  });
 	});
@@ -237,6 +301,8 @@ $(document).ready( function() {
 	
 	$("#cplayer").bind("ended", function(){
 		$("#cplaypause").switchClass("cpause","cplay");
+		$("#cplaypause").attr("src","img/play.png");
+		
 	});
  				
 });
